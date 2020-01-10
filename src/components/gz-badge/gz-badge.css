@@ -1,0 +1,126 @@
+#gzlink{
+  display: block; 
+  position: fixed; 
+  bottom: 0px; 
+  right: 0px; 
+  margin: 0px; 
+  padding: 0px; 
+  height: auto; 
+  width: 40%; 
+  max-width: 250px; 
+  min-width: 150px; 
+  z-index: 1000;
+  line-height: 0;
+}
+svg{
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 5;
+}
+.drawer{
+  display: block;
+  height: auto;
+  width: 100%;
+  padding: 2% 0 0 0;
+  background: rgba(255, 255, 255, 0.8);
+  color: #444;
+  font-family: sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 5px 0 0 0;
+  border-bottom: solid 1px #3c692b;
+  float: left;
+  transform: translateY(100%);
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: transform 250ms cubic-bezier(0.860, 0.000, 0.070, 1.000) 0ms, opacity 50ms cubic-bezier(0.860, 0.000, 0.070, 1.000) 200ms;
+}
+.drawer-open .drawer{
+  display: block;
+  transform: translateY(0%);
+  opacity: 1;
+  transition: transform 250ms cubic-bezier(0.860, 0.000, 0.070, 1.000) 0ms, opacity 50ms cubic-bezier(0.860, 0.000, 0.070, 1.000) 0ms;
+}
+#Caret{
+  transform: rotateX(0deg);
+  transform-origin: 116.5px 6px;
+  transition: transform 250ms cubic-bezier(0.860, 0.000, 0.070, 1.000) 0ms;
+}
+.drawer-open #Caret{
+  /* display: none; */
+  transform: rotateX(180deg);
+}
+.drawer a, .drawer a:hover, .drawer a:visited, .drawer a:active{
+  color: #444;
+}
+.drawer h1{
+  font-size: 2em;
+  padding: 5% 5% 0 5%;
+  margin: 0;
+  text-align: center;
+}
+.drawer p{
+  font-size: 1.25em;
+  line-height: 1.15em;
+  padding: 5% 10%;
+  margin: 0;
+  text-align: justify;
+}
+.drawer .icon, .drawer .ws{
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  line-height: 0;
+  width: 12%;
+  padding-bottom: 12%;
+  float: left;
+}
+.drawer a svg{
+  position: absolute;
+  margin: 15%;
+  width: 70%;
+}
+.drawer a svg path{
+  fill: #fff;
+}
+.drawer .tw{
+  background-color: #00aced;
+}
+.drawer .fb{
+  background-color: #3B5998;
+}
+.drawer .gh{
+  background-color: #000;
+}
+.drawer .cp{
+  background-color: #666;
+}
+.drawer .ws{
+  width: 52%;
+  line-height: 2;
+  font-size: 1.25em;
+  text-align: center;
+  background-color: #7bb951;
+}
+.drawer .ws:hover, .drawer .ws:active, .drawer .ws:visited{
+  color: #fff;
+}
+
+.drawer .ws span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+
+/*
+* Mobile Styles
+*/
+@media only screen and (max-width : 575px) {
+  .drawer{
+    font-size: 8px;
+  }
+}

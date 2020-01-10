@@ -12,6 +12,7 @@ module.exports = {
 
     //devtool: 'source-map',
     entry: {
+        'main': path.join(dirApp, 'main'),
         'components': path.join(dirApp, 'components'),
         'webcomponents-loader': path.join('@webcomponents/webcomponentsjs', 'webcomponents-loader'),
         'bundles/webcomponents-sd-ce-pf': path.join('@webcomponents/webcomponentsjs/bundles', 'webcomponents-sd-ce-pf'),
@@ -34,7 +35,7 @@ module.exports = {
             template: path.join(__dirname, 'index.ejs'),
             inject: 'body',
             // Order of the script tags is important here. The polyfills have to load first.
-            chunks: ['webcomponents-loader', 'components'],
+            chunks: ['webcomponents-loader', 'components', 'main'],
             chunksSortMode: 'manual'
         })
     ],

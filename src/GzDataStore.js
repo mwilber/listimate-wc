@@ -35,23 +35,25 @@ export class GzDataStore{
         }.bind(this));
     }
 
+    /*
+     * Pass fresh data into all bound web components
+     */
     _refresh(){
         this.bindings.forEach((val, key)=>{
             let targetRef = this._resolve(val, this.dataStore );
             if(Array.isArray(targetRef)){
-                console.log(val+' is array', key);
                 key.dataSet = Array.from(targetRef);
-                //key.render();
             }else if(targetRef instanceof Object){
-                console.log(val+' is object');
                 key.dataStore = Object.create(targetRef);
             }else{
                 key.dataStore = targetRef;
             }
-            console.log("TCL: GzDataStore -> _refresh -> key.dataStore", key.dataStore)
         });
     }
 
+    /*
+     * Return ref to dataStore property from path represented in string
+     */
     _resolve(path, obj) {
         return path.split('.').reduce(function(prev, curr) {
             return prev ? prev[curr] : null

@@ -10,7 +10,7 @@ const dirApp = path.join(__dirname, 'src');
 module.exports = {
     mode: 'production',
 
-    //devtool: 'source-map',
+    devtool: 'source-map',
     entry: {
         'main': path.join(dirApp, 'main'),
         'components': path.join(dirApp, 'components'),
@@ -36,7 +36,7 @@ module.exports = {
             template: path.join(__dirname, 'index.ejs'),
             inject: 'body',
             // Order of the script tags is important here. The polyfills have to load first.
-            chunks: ['webcomponents-loader', 'components', 'main'],
+            chunks: ['webcomponents-loader', 'main', 'components'],
             chunksSortMode: 'manual'
         })
     ],

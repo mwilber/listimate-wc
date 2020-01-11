@@ -22,10 +22,15 @@ window.customElements.define('gz-for', class extends HTMLElement {
     
     connectedCallback() {
       console.log('gz-for loaded');
-    }
-
-    dataTest(){
-      this._dataSet.push('blah');
+      if(this.getAttribute('dataBind')){
+        console.log("TCL: extends -> connectedCallback -> this.getAttribute('dataBind')", this.getAttribute('dataBind'))
+        document.dispatchEvent(new CustomEvent('GzDataBind', {
+          detail:{
+              node: this,
+              target: this.getAttribute('dataBind')
+          }
+        }));
+      }
     }
     
     render(){

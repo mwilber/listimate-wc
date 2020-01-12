@@ -50,7 +50,13 @@ window.customElements.define('gz-for', class extends HTMLElement {
         let template = this.shadowRoot.querySelector('slot').assignedNodes()[1].content;
         for(let idx=0; idx<this._dataSet.length; idx++){
           container.appendChild(template.cloneNode(true));
-          container.innerHTML = container.innerHTML.replace('{name}', this._dataSet[idx]);
+          //container.innerHTML = container.innerHTML.replace('{name}', this._dataSet[idx]);
+          container.innerHTML = container.innerHTML.replace(
+            /{(\w*)}/g ,
+            function( m, key ){
+              return this.hasOwnProperty( key ) ? this[ key ] : "";
+            }.bind(this._dataSet[idx])
+          );
         }
       }
     }

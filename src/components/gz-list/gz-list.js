@@ -40,7 +40,7 @@ window.customElements.define('gz-list', class extends HTMLElement {
           document.dispatchEvent(new CustomEvent('GzDataUpdate', {
             detail:{
                 target: 'lists',
-                payload: [...this.dataSet, inpName.value]
+                payload: [...this.dataSet, {name: inpName.value, number: Math.floor(Math.random()*100)}]
             }
           }));
           inpName.value = "";
@@ -62,7 +62,8 @@ window.customElements.define('gz-list', class extends HTMLElement {
         <button id="btn-add">Add</button>
         <gz-for dataBind="${this.getAttribute('dataBind')}">
           <template>
-            <h1>{name}</h1>
+            <h1>name: {name}</h1>
+            <h3>number: {number}</h3>
           </template>
         </gz-for>
       `;

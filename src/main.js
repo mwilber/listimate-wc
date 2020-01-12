@@ -1,7 +1,7 @@
 import { GzDataStore } from './GzDataStore';
 
 let dataStore = new GzDataStore('listimate', {
-    lists: ['blah']
+    lists: []
 });
 
 let repeater = document.querySelector('gz-for');

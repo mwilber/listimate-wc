@@ -33,6 +33,10 @@ export class GzDataStore{
             }
             
         }.bind(this));
+
+        document.addEventListener('GzDataRefresh', function(evt){
+            this._refresh();
+        }.bind(this));
     }
 
     /*

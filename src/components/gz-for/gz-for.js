@@ -23,7 +23,6 @@ window.customElements.define('gz-for', class extends HTMLElement {
     connectedCallback() {
       console.log('gz-for loaded');
       if(this.getAttribute('dataBind')){
-        console.log("TCL: extends -> connectedCallback -> this.getAttribute('dataBind')", this.getAttribute('dataBind'))
         document.dispatchEvent(new CustomEvent('GzDataBind', {
           detail:{
               node: this,
@@ -46,10 +45,25 @@ window.customElements.define('gz-for', class extends HTMLElement {
         <style>
           ${cssData}
         </style>
+
+        <slot></slot>
         
-        <div>
-          ${strList}
+        <div class="gz-for-container">
         </div>
       `;
+
+      let templateTest = this.shadowRoot.querySelector('slot').assignedNodes()[1].content;
+      console.log("TCL: extends -> render -> templateTest", templateTest)
+      let container = this.shadowRoot.querySelector('.gz-for-container');
+      if(Array.isArray(this._dataSet)){
+        console.log("TCL: extends -> render -> this._dataSet", this._dataSet)
+        for(let idx=0; idx<this._dataSet.length; idx++){
+          let tmpNode = templateTest.cloneNode(true);
+          
+          container.appendChild(tmpNode);
+          console.log("TCL: extends -> render -> tmpNode", container.lastChild)
+          container.lastChild.innerHTML = "<button>test</button>"
+        }
+      }
     }
 });

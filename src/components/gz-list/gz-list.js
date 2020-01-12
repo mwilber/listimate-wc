@@ -62,8 +62,7 @@ window.customElements.define('gz-list', class extends HTMLElement {
         <button id="btn-add">Add</button>
         <gz-for dataBind="${this.getAttribute('dataBind')}">
           <template>
-            <h1>name: {name}</h1>
-            <h3>number: {number}</h3>
+            <gz-list-item name="{name}" number="{number}"></gz-list-item>
           </template>
         </gz-for>
       `;

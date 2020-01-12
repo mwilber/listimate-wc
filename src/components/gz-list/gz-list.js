@@ -49,6 +49,7 @@ window.customElements.define('gz-list', class extends HTMLElement {
       });
 
       // Load existing data from the datastore
+      // TODO: Replace this with a refresh on bind?
       document.dispatchEvent(new CustomEvent('GzDataRefresh', {}));
     }
     
@@ -62,7 +63,7 @@ window.customElements.define('gz-list', class extends HTMLElement {
         <button id="btn-add">Add</button>
         <gz-for dataBind="${this.getAttribute('dataBind')}">
           <template>
-            <gz-list-item name="{name}" number="{number}"></gz-list-item>
+            <gz-list-item idx="{idx}" name="{name}" number="{number}"></gz-list-item>
           </template>
         </gz-for>
       `;

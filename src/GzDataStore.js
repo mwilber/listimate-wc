@@ -20,7 +20,7 @@ export class GzDataStore{
 
         document.addEventListener('GzDataUpdate', function(evt){
             try{
-                let targetRef = this._resolve(evt.detail.target, this.dataStore ) //eval('this.dataStore.'+evt.detail.target);
+                let targetRef = this._resolve(evt.detail.target, this.dataStore );
                 if(targetRef){
                     Object.assign(targetRef, evt.detail.payload)
                     // Copy the new dataStore to localStorage
@@ -48,9 +48,9 @@ export class GzDataStore{
             if(Array.isArray(targetRef)){
                 key.dataSet = Array.from(targetRef);
             }else if(targetRef instanceof Object){
-                key.dataStore = Object.create(targetRef);
+                key.dataSet = Object.assign({}, targetRef);
             }else{
-                key.dataStore = targetRef;
+                key.dataSet = targetRef;
             }
         });
     }
@@ -60,7 +60,13 @@ export class GzDataStore{
      */
     _resolve(path, obj) {
         return path.split('.').reduce(function(prev, curr) {
-            return prev ? prev[curr] : null
+            //Check for array notation
+            let arrCk = curr.match(/([^\[]+)\[([^\]]+)/);
+            if(arrCk){
+                return prev ? prev[arrCk[1]][arrCk[2]] : null
+            }else{
+                return prev ? prev[curr] : null;
+            }
         }, obj || self)
     }
 }

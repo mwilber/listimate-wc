@@ -9,6 +9,12 @@ window.customElements.define('gz-list-item', class extends HTMLElement {
       this.render();
     }
 
+    get idx() {
+      return this.getAttribute('idx');
+    }
+    set idx(newValue) {
+      this.setAttribute('idx', newValue);
+    }
     get name() {
       return this.getAttribute('name');
     }
@@ -23,7 +29,7 @@ window.customElements.define('gz-list-item', class extends HTMLElement {
     }
 
     static get observedAttributes() {
-      return ['name', 'number'];
+      return ['idx', 'name', 'number'];
     }
     
     attributeChangedCallback(name, oldValue, newValue) {
@@ -44,7 +50,7 @@ window.customElements.define('gz-list-item', class extends HTMLElement {
       `;
 
       this.shadowRoot.querySelector('h2').addEventListener('click', function(evt){
-        alert(this.number);
-      }.bind({number: this.getAttribute('number')}));
+        document.querySelector('gz-item-detail').setAttribute('dataBind', 'lists['+this.idx+']');
+      }.bind({idx: this.getAttribute('idx')}));
     }
 });

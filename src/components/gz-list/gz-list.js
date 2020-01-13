@@ -17,6 +17,7 @@ window.customElements.define('gz-list', class extends HTMLElement {
     
     set dataSet(newValue) {
       this._dataSet = newValue;
+      this.render();
     }
     
     connectedCallback() {
@@ -55,11 +56,13 @@ window.customElements.define('gz-list', class extends HTMLElement {
         
         <input id="inp-add" placeholder="Item Name" />
         <button id="btn-add">Add</button>
-        <gz-for dataBind="${this.getAttribute('dataBind')}">
+        <gz-for>
           <template>
-            <gz-list-item dataBinda></gz-list-item>
+            <gz-list-item databind="lists"></gz-list-item>
           </template>
         </gz-for>
       `;
+
+      this.shadowRoot.querySelector('gz-for').dataSet = this._dataSet;
     }
 });

@@ -1,3 +1,6 @@
+/* 
+    Base class for components binding to a GzDataStore
+*/
 export class GzDataElement extends HTMLElement {
   
     constructor(){

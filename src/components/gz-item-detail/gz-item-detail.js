@@ -19,6 +19,7 @@ window.customElements.define('gz-item-detail', class extends HTMLElement {
   }
   set dataSet(newValue) {
     this._dataSet = newValue;
+    console.log('dataset updated', this._dataset);
     this.render();
   }
   get dataBind() {
@@ -42,10 +43,8 @@ window.customElements.define('gz-item-detail', class extends HTMLElement {
       }));
 
       // Load existing data from the datastore
-      document.dispatchEvent(new CustomEvent('GzDataRefresh', {}));
+      //document.dispatchEvent(new CustomEvent('GzDataRefresh', {}));
     }
-    // TODO: this might not be necessary
-    this.render();
   }
   
   connectedCallback() {
@@ -53,7 +52,7 @@ window.customElements.define('gz-item-detail', class extends HTMLElement {
   }
   
   render(){
-
+    console.log('detail rendering', this._dataset);
     let dataSet = JSON.stringify(this._dataSet);
 
     let {name, number} = this._dataSet;

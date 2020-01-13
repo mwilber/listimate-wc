@@ -11,11 +11,14 @@ export class GzDataStore{
 
         // Set up event listeners
         document.addEventListener('GzDataBind', function(evt){
-            this.bindings.set(evt.detail.node, evt.detail.target);
-            console.log('map');
-            this.bindings.forEach((val, key)=>{
-                console.log('key', key, 'val', val);
-            });
+            if( !this.bindings.has(evt.detail.node) ){
+                this.bindings.set(evt.detail.node, evt.detail.target);
+                // console.log('map');
+                // this.bindings.forEach((val, key)=>{
+                //     console.log('key', key, 'val', val);
+                // });
+                this._refresh(evt.detail.target);
+            }
         }.bind(this));
 
         document.addEventListener('GzDataUpdate', function(evt){
@@ -26,7 +29,7 @@ export class GzDataStore{
                     // Copy the new dataStore to localStorage
                     if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
 
-                    this._refresh();
+                    this._refresh(evt.detail.target);
                 }
             }catch(e){
                 console.error('GzDataStore error: '+e.message);
@@ -35,22 +38,24 @@ export class GzDataStore{
         }.bind(this));
 
         document.addEventListener('GzDataRefresh', function(evt){
-            this._refresh();
+            //this._refresh();
         }.bind(this));
     }
 
     /*
      * Pass fresh data into all bound web components
      */
-    _refresh(){
+    _refresh(path){
         this.bindings.forEach((val, key)=>{
-            let targetRef = this._resolve(val, this.dataStore );
-            if(Array.isArray(targetRef)){
-                key.dataSet = Array.from(targetRef);
-            }else if(targetRef instanceof Object){
-                key.dataSet = Object.assign({}, targetRef);
-            }else{
-                key.dataSet = targetRef;
+            if(val == path){
+                let targetRef = this._resolve(val, this.dataStore );
+                if(Array.isArray(targetRef)){
+                    key.dataSet = Array.from(targetRef);
+                }else if(targetRef instanceof Object){
+                    key.dataSet = Object.assign({}, targetRef);
+                }else{
+                    key.dataSet = targetRef;
+                }
             }
         });
     }

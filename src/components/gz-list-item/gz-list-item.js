@@ -5,34 +5,47 @@ window.customElements.define('gz-list-item', class extends HTMLElement {
     constructor(){
       super();
 
+      this._dataSet = {
+        name:'', 
+        number: ''
+      };
+
       let shadowRoot = this.attachShadow({mode: 'open'});
       this.render();
     }
 
-    get idx() {
-      return this.getAttribute('idx');
+    get dataSet() {
+      return this._dataSet;
     }
-    set idx(newValue) {
-      this.setAttribute('idx', newValue);
+    set dataSet(newValue) {
+      this._dataSet = newValue;
+      this.render();
     }
-    get name() {
-      return this.getAttribute('name');
+    get dataBind() {
+      return this.getAttribute('databind');
     }
-    set name(newValue) {
-      this.setAttribute('name', newValue);
+    set dataBind(newValue) {
+      this.setAttribute('databind', newValue);
+      this.render();
     }
-    get number() {
-      return this.getAttribute('number');
-    }
-    set number(newValue) {
-      this.setAttribute('number', newValue);
-    }
-
+  
     static get observedAttributes() {
-      return ['idx', 'name', 'number'];
+      return ['databind'];
     }
     
     attributeChangedCallback(name, oldValue, newValue) {
+      if(this.getAttribute('dataBind')){
+        document.dispatchEvent(new CustomEvent('GzDataBind', {
+          detail:{
+              node: this,
+              target: this.getAttribute('dataBind')
+          }
+        }));
+  
+        // Load existing data from the datastore
+        //document.dispatchEvent(new CustomEvent('GzDataRefresh', {}));
+      }
+      // TODO: this might not be necessary
       this.render();
     }
     
@@ -41,16 +54,18 @@ window.customElements.define('gz-list-item', class extends HTMLElement {
     }
     
     render(){
+      const {name, number} = this._dataSet;
+
       this.shadowRoot.innerHTML = `
         <style>
           ${cssData}
         </style>
         
-        <h2>name: ${this.getAttribute('name')}</h2>
+        <h2>name: ${name}</h2>
       `;
 
       this.shadowRoot.querySelector('h2').addEventListener('click', function(evt){
-        document.querySelector('gz-item-detail').setAttribute('dataBind', 'lists['+this.idx+']');
-      }.bind({idx: this.getAttribute('idx')}));
+        document.querySelector('gz-item-detail').setAttribute('dataBind', this.getAttribute('databind'));
+      }.bind(this));
     }
 });

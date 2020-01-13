@@ -31,9 +31,7 @@ window.customElements.define('gz-list', class extends HTMLElement {
       }
 
       let btnAdd = this.shadowRoot.getElementById('btn-add');
-      console.log("TCL: extends -> connectedCallback -> btnAdd", btnAdd)
       btnAdd.addEventListener('click', (evt)=>{
-        console.log('add item');
         let inpName = this.shadowRoot.getElementById('inp-add');
 
         if(inpName.value){
@@ -47,10 +45,6 @@ window.customElements.define('gz-list', class extends HTMLElement {
         }
         
       });
-
-      // Load existing data from the datastore
-      // TODO: Replace this with a refresh on bind?
-      //document.dispatchEvent(new CustomEvent('GzDataRefresh', {}));
     }
     
     render(){
@@ -63,7 +57,7 @@ window.customElements.define('gz-list', class extends HTMLElement {
         <button id="btn-add">Add</button>
         <gz-for dataBind="${this.getAttribute('dataBind')}">
           <template>
-            <gz-list-item dataBind="{dataBind}"></gz-list-item>
+            <gz-list-item dataBinda></gz-list-item>
           </template>
         </gz-for>
       `;

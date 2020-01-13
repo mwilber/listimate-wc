@@ -53,7 +53,7 @@ window.customElements.define('gz-for', class extends HTMLElement {
         for(let idx=0; idx<this._dataSet.length; idx++){
           container.appendChild(template.cloneNode(true));
           // Inject the array index
-          container.innerHTML = container.innerHTML.replace('{dataBind}', this.getAttribute('dataBind')+'['+idx+']');
+          container.innerHTML = container.innerHTML.replace('databinda', 'dataBind="'+this.getAttribute('dataBind')+'['+idx+']"');
           //container.innerHTML = container.innerHTML.replace('{name}', this._dataSet[idx]);
           // Search and replace the iinerHTML string for strings matching the data object's properties
           container.innerHTML = container.innerHTML.replace(

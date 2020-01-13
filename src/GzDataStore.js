@@ -11,14 +11,12 @@ export class GzDataStore{
 
         // Set up event listeners
         document.addEventListener('GzDataBind', function(evt){
-            if( !this.bindings.has(evt.detail.node) ){
-                this.bindings.set(evt.detail.node, evt.detail.target);
-                // console.log('map');
-                // this.bindings.forEach((val, key)=>{
-                //     console.log('key', key, 'val', val);
-                // });
-                this._refresh(evt.detail.target);
-            }
+            this.bindings.set(evt.detail.node, evt.detail.target);
+            // console.log('map');
+            // this.bindings.forEach((val, key)=>{
+            //     console.log('key', key, 'val', val);
+            // });
+            this._refresh(evt.detail.target);
         }.bind(this));
 
         document.addEventListener('GzDataUpdate', function(evt){

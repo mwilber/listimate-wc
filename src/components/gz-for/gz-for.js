@@ -51,12 +51,12 @@ window.customElements.define('gz-for', class extends HTMLElement {
         let template = this.shadowRoot.querySelector('slot').assignedNodes()[1].content;
         // Loop through the data set and apply a template for each item
         for(let idx=0; idx<this._dataSet.length; idx++){
-          let testNode = template.cloneNode(true);
-          if(testNode.firstElementChild.hasAttribute('databind')){
-            testNode.firstElementChild.setAttribute('databind', testNode.firstElementChild.getAttribute('databind')+'['+idx+']');
+          let newChildNode = template.cloneNode(true);
+          if(newChildNode.firstElementChild.hasAttribute('databind')){
+            newChildNode.firstElementChild.setAttribute('databind', newChildNode.firstElementChild.getAttribute('databind')+'['+idx+']');
           }
-          container.appendChild(testNode);
-          // Search and replace the iinerHTML string for strings matching the data object's properties
+          container.appendChild(newChildNode);
+          // Search and replace the innerHTML string for template strings matching the data object's properties
           container.innerHTML = container.innerHTML.replace(
             /{(\w*)}/g ,
             function( m, key ){

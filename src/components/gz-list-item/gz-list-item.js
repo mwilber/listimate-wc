@@ -1,6 +1,7 @@
 import cssData from './gz-list-item.css';
+import { GzDataElement } from '../GzDataElement';
 
-window.customElements.define('gz-list-item', class extends HTMLElement {
+window.customElements.define('gz-list-item', class extends GzDataElement {
   
     constructor(){
       super();
@@ -10,42 +11,6 @@ window.customElements.define('gz-list-item', class extends HTMLElement {
         number: ''
       };
 
-      let shadowRoot = this.attachShadow({mode: 'open'});
-      this.render();
-    }
-
-    get dataSet() {
-      return this._dataSet;
-    }
-    set dataSet(newValue) {
-      this._dataSet = newValue;
-      this.render();
-    }
-    get dataBind() {
-      return this.getAttribute('databind');
-    }
-    set dataBind(newValue) {
-      this.setAttribute('databind', newValue);
-      this.render();
-    }
-  
-    static get observedAttributes() {
-      return ['databind'];
-    }
-    
-    attributeChangedCallback(name, oldValue, newValue) {
-      if(this.getAttribute('dataBind')){
-        document.dispatchEvent(new CustomEvent('GzDataBind', {
-          detail:{
-              node: this,
-              target: this.getAttribute('dataBind')
-          }
-        }));
-  
-        // Load existing data from the datastore
-        //document.dispatchEvent(new CustomEvent('GzDataRefresh', {}));
-      }
-      // TODO: this might not be necessary
       this.render();
     }
     

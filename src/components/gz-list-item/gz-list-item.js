@@ -10,12 +10,6 @@ window.customElements.define('gz-list-item', class extends GzDataElement {
         name:'', 
         number: ''
       };
-
-      this.render();
-    }
-    
-    connectedCallback() {
-      console.log('gz-list-item loaded');
     }
     
     render(){

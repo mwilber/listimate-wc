@@ -57,6 +57,7 @@ window.customElements.define('gz-for', class extends HTMLElement {
           }
           container.appendChild(newChildNode);
           // Search and replace the innerHTML string for template strings matching the data object's properties
+          // TODO: Figure out a way to do this without setting innerHTML. Reloads all the child components each time.
           container.innerHTML = container.innerHTML.replace(
             /{(\w*)}/g ,
             function( m, key ){

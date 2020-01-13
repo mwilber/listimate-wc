@@ -6,7 +6,6 @@ export class GzDataElement extends HTMLElement {
       this._dataSet = {};
 
       let shadowRoot = this.attachShadow({mode: 'open'});
-      this.render();
     }
 
     get dataSet() {

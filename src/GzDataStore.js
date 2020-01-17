@@ -21,14 +21,18 @@ export class GzDataStore{
 
         document.addEventListener('GzDataUpdate', function(evt){
             try{
-                let targetRef = this._resolve(evt.detail.target, this.dataStore );
-                if(targetRef){
-                    Object.assign(targetRef, evt.detail.payload)
-                    // Copy the new dataStore to localStorage
-                    if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
-
-                    this._refresh(evt.detail.target);
+                let targetPath = evt.detail.target.split('.');
+                let targetRef = this.dataStore;
+                // Get a reference var to the parent of the target
+                for(let idx=0; idx<(targetPath.length-1); idx++){
+                    targetRef = targetRef[targetPath[idx]];
                 }
+                // Replace the target with the payload
+                targetRef[targetPath[targetPath.length-1]] = evt.detail.payload;
+                
+                if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
+
+                this._refresh(evt.detail.target);
             }catch(e){
                 console.error('GzDataStore error: '+e.message);
             }

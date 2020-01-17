@@ -8,6 +8,22 @@ window.customElements.define('gz-list', class extends GzDataElement {
 
       this._dataSet = null;
     }
+
+    deleteItem(itemIdx){
+      let tmp = this._dataSet.filter(function(value, index, arr){
+        //console.log("TCL: extends -> deleteItem -> value, index, arr", value, index, arr, itemIdx)
+          
+          return index != itemIdx;
+        });
+      console.log("TCL: extends -> deleteItem -> tmp", tmp)
+      
+      document.dispatchEvent(new CustomEvent('GzDataUpdate', {
+        detail:{
+          target: 'lists',
+          payload: tmp
+        }
+      }));
+    }
     
     render(){
       this.shadowRoot.innerHTML = `

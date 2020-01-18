@@ -1,7 +1,7 @@
-import cssData from './gz-item-detail.css';
+import cssData from './list-item-detail.css';
 import { GzDataElement } from '../GzDataElement';
 
-window.customElements.define('gz-item-detail', class extends GzDataElement {
+window.customElements.define('list-item-detail', class extends GzDataElement {
   
   constructor(){
     super();

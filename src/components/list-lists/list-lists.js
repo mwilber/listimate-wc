@@ -1,7 +1,7 @@
-import cssData from './gz-list.css';
+import cssData from './list-lists.css';
 import { GzDataElement } from '../GzDataElement';
 
-window.customElements.define('gz-list', class extends GzDataElement {
+window.customElements.define('list-lists', class extends GzDataElement {
   
     constructor(){
       super();
@@ -31,11 +31,12 @@ window.customElements.define('gz-list', class extends GzDataElement {
           ${cssData}
         </style>
         
-        <input id="inp-add" placeholder="Item Name" />
+        <h2>Lists</h2>
+        <input id="inp-add" placeholder="List Name" />
         <button id="btn-add">Add</button>
         <gz-for>
           <template>
-            <gz-list-item databind="lists"></gz-list-item>
+            <list-list databind="lists"></list-list>
           </template>
         </gz-for>
       `;
@@ -49,8 +50,8 @@ window.customElements.define('gz-list', class extends GzDataElement {
         if(inpName.value){
           document.dispatchEvent(new CustomEvent('GzDataUpdate', {
             detail:{
-                target: 'lists',
-                payload: [...this.dataSet, {name: inpName.value, number: Math.floor(Math.random()*100)}]
+                target: this.getAttribute('databind'),
+                payload: [...this._dataSet, {name: inpName.value, number: 0, items: []}]
             }
           }));
           inpName.value = "";

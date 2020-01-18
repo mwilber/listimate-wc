@@ -25,7 +25,15 @@ export class GzDataStore{
                 let targetRef = this.dataStore;
                 // Get a reference var to the parent of the target
                 for(let idx=0; idx<(targetPath.length-1); idx++){
-                    targetRef = targetRef[targetPath[idx]];
+
+                    let arrCk = targetPath[idx].match(/([^\[]+)\[([^\]]+)/);
+                    if(arrCk){
+                        targetRef = targetRef[arrCk[1]][arrCk[2]];
+                    }else{
+                        targetRef = targetRef[targetPath[idx]];
+                    }
+
+                    
                 }
                 // Replace the target with the payload
                 targetRef[targetPath[targetPath.length-1]] = evt.detail.payload;
@@ -49,6 +57,7 @@ export class GzDataStore{
      */
     _refresh(path){
         this.bindings.forEach((val, key)=>{
+            console.log('key', key.dataSet);
             if(val == path){
                 let targetRef = this._resolve(val, this.dataStore );
                 if(Array.isArray(targetRef)){

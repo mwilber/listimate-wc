@@ -1,7 +1,7 @@
-import cssData from './gz-list-item.css';
+import cssData from './list-item.css';
 import { GzDataElement } from '../GzDataElement';
 
-window.customElements.define('gz-list-item', class extends GzDataElement {
+window.customElements.define('list-item', class extends GzDataElement {
   
     constructor(){
       super();
@@ -24,7 +24,7 @@ window.customElements.define('gz-list-item', class extends GzDataElement {
       `;
 
       this.shadowRoot.querySelector('h2').addEventListener('click', function(evt){
-        document.querySelector('gz-item-detail').setAttribute('dataBind', this.getAttribute('databind'));
+        document.querySelector('list-item-detail').setAttribute('dataBind', this.getAttribute('databind'));
       }.bind(this));
     }
 });

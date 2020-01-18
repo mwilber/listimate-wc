@@ -19,6 +19,10 @@ export class GzDataStore{
             this._refresh(evt.detail.target);
         }.bind(this));
 
+        document.addEventListener('GzDataUnBind', function(evt){
+            this.bindings.delete(evt.detail.node);
+        }.bind(this));
+
         document.addEventListener('GzDataUpdate', function(evt){
             try{
                 let targetPath = evt.detail.target.split('.');
@@ -57,7 +61,7 @@ export class GzDataStore{
      */
     _refresh(path){
         this.bindings.forEach((val, key)=>{
-            console.log('key', key.dataSet);
+            //console.log('key', key.dataSet);
             if(val == path){
                 let targetRef = this._resolve(val, this.dataStore );
                 if(Array.isArray(targetRef)){

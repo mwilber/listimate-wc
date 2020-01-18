@@ -44,6 +44,14 @@ export class GzDataElement extends HTMLElement {
     connectedCallback() {
       
     }
+
+    disconnectedCallback(){
+      document.dispatchEvent(new CustomEvent('GzDataUnBind', {
+        detail:{
+            node: this
+        }
+      }));
+    }
     
     render(){
       const {name, number} = this._dataSet;

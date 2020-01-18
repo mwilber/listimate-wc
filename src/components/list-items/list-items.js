@@ -15,11 +15,10 @@ window.customElements.define('list-items', class extends GzDataElement {
         
         return index != itemIdx;
       });
-    console.log("TCL: extends -> deleteItem -> tmp", tmp)
     
     document.dispatchEvent(new CustomEvent('GzDataUpdate', {
       detail:{
-        target: 'lists',
+        target: this.getAttribute('databind'),
         payload: tmp
       }
     }));
@@ -50,7 +49,6 @@ window.customElements.define('list-items', class extends GzDataElement {
       let inpName = this.shadowRoot.getElementById('inp-add');
 
       if(inpName.value){
-        console.log('about to spread', this.dataSet);
         document.dispatchEvent(new CustomEvent('GzDataUpdate', {
           detail:{
               target: this.getAttribute('databind'),

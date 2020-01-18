@@ -19,7 +19,7 @@ window.customElements.define('list-lists', class extends GzDataElement {
       
       document.dispatchEvent(new CustomEvent('GzDataUpdate', {
         detail:{
-          target: 'lists',
+          target: this.getAttribute('databind'),
           payload: tmp
         }
       }));

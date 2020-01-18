@@ -21,7 +21,6 @@ window.customElements.define('gz-for', class extends HTMLElement {
     }
     
     connectedCallback() {
-      console.log('gz-for loaded');
       if(this.getAttribute('dataBind')){
         document.dispatchEvent(new CustomEvent('GzDataBind', {
           detail:{
@@ -52,6 +51,7 @@ window.customElements.define('gz-for', class extends HTMLElement {
         // Loop through the data set and apply a template for each item
         for(let idx=0; idx<this._dataSet.length; idx++){
           let newChildNode = template.cloneNode(true);
+          newChildNode.firstElementChild.setAttribute('idx', idx);
           if(newChildNode.firstElementChild.hasAttribute('databind')){
             newChildNode.firstElementChild.setAttribute('databind', newChildNode.firstElementChild.getAttribute('databind')+'['+idx+']');
           }

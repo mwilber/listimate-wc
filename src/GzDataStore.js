@@ -6,7 +6,8 @@ export class GzDataStore{
         // Restore from localStorage
         if(window.localStorage){
             let storedData = window.localStorage.getItem(storeName);
-            if(storedData) this.dataStore = JSON.parse(storedData);
+            if(storedData) storedData = JSON.parse(storedData);
+            if(storedData) this.dataStore = storedData;
         }
 
         // Set up event listeners
@@ -66,7 +67,6 @@ export class GzDataStore{
      * Pass fresh data into all bound web components
      */
     _refresh(path){
-    console.log("TCL: GzDataStore -> _refresh -> path", path)
         this.bindings.forEach((val, key)=>{
             //console.log('key', key.dataSet);
             if(val == path || !path){

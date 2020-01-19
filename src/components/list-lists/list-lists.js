@@ -15,7 +15,7 @@ window.customElements.define('list-lists', class extends GzDataElement {
           
           return index != itemIdx;
         });
-      console.log("TCL: extends -> deleteItem -> tmp", tmp)
+      //console.log("TCL: extends -> deleteItem -> tmp", tmp)
       
       document.dispatchEvent(new CustomEvent('GzDataUpdate', {
         detail:{

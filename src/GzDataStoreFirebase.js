@@ -38,10 +38,11 @@ export class GzDataStoreFirebase extends GzDataStore{
                 this.dbRef = firebase.database().ref(this.userId);
         
                 this.dbRef.on('value', function(snapshot) {
-                    console.log("firebase updated", snapshot.val());
-                    this.dataStore = snapshot.val();
-                    if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
-                    this._refresh();
+                    if(snapshot.val()){
+                        this.dataStore = snapshot.val();
+                        if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
+                        this._refresh();
+                    }
                 }.bind(this));
         
             } else {
@@ -58,7 +59,6 @@ export class GzDataStoreFirebase extends GzDataStore{
     }
 
     _commitData(refreshTarget){
-        console.log('GZDataStoreFirebase');
         if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
 
         this.dbRef.set(this.dataStore).then((result)=>{

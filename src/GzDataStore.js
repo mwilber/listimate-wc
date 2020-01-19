@@ -42,9 +42,8 @@ export class GzDataStore{
                 // Replace the target with the payload
                 targetRef[targetPath[targetPath.length-1]] = evt.detail.payload;
                 
-                if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
-
-                this._refresh(evt.detail.target);
+                this._commitData(evt.detail.target);
+                
             }catch(e){
                 console.error('GzDataStore error: '+e.message);
             }
@@ -56,13 +55,21 @@ export class GzDataStore{
         }.bind(this));
     }
 
+    _commitData(refreshTarget){
+        console.log('GZDataStore');
+        if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
+
+        this._refresh(refreshTarget);
+    }
+
     /*
      * Pass fresh data into all bound web components
      */
     _refresh(path){
+    console.log("TCL: GzDataStore -> _refresh -> path", path)
         this.bindings.forEach((val, key)=>{
             //console.log('key', key.dataSet);
-            if(val == path){
+            if(val == path || !path){
                 let targetRef = this._resolve(val, this.dataStore );
                 if(Array.isArray(targetRef)){
                     key.dataSet = Array.from(targetRef);

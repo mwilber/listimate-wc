@@ -7,6 +7,12 @@ window.customElements.define('list-items', class extends GzDataElement {
     super();
 
     this._dataSet = null;
+
+    this.dataTemplate = {
+      name: '',
+      price: 0,
+      quantity: 1
+    };
   }
 
   deleteItem(itemIdx){
@@ -49,10 +55,11 @@ window.customElements.define('list-items', class extends GzDataElement {
       let inpName = this.shadowRoot.getElementById('inp-add');
 
       if(inpName.value){
+        if(!this._dataSet) this._dataSet = [];
         document.dispatchEvent(new CustomEvent('GzDataUpdate', {
           detail:{
               target: this.getAttribute('databind'),
-              payload: [...this._dataSet, {name: inpName.value, number: Math.floor(Math.random()*100)}]
+              payload: [...this._dataSet, {...this.dataTemplate, name: inpName.value}]
           }
         }));
         inpName.value = "";

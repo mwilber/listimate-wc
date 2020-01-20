@@ -13,17 +13,17 @@ window.customElements.define('list-item', class extends GzDataElement {
     }
     
     render(){
-      const {name, number} = this._dataSet;
+      const {name, price} = this._dataSet;
 
       this.shadowRoot.innerHTML = `
         <style>
           ${cssData}
         </style>
         
-        <h2>name: ${name}</h2>
+        <h3>${name} $${price}</h3>
       `;
 
-      this.shadowRoot.querySelector('h2').addEventListener('click', function(evt){
+      this.shadowRoot.querySelector('h3').addEventListener('click', function(evt){
         document.querySelector('list-item-detail').setAttribute('dataBind', this.getAttribute('databind'));
         document.querySelector('list-item-detail').setAttribute('idx', this.getAttribute('idx'));
       }.bind(this));

@@ -9,7 +9,10 @@ const dirApp = path.join(__dirname, 'src');
  */
 module.exports = {
     mode: 'production',
-
+    performance: {
+        maxEntrypointSize: 750000,
+        maxAssetSize: 750000
+    },
     devtool: 'source-map',
     entry: {
         'main': path.join(dirApp, 'main'),

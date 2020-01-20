@@ -13,6 +13,8 @@ window.customElements.define('list-items', class extends GzDataElement {
       price: 0,
       quantity: 1
     };
+
+    this.total = 0;
   }
 
   deleteItem(itemIdx){
@@ -41,6 +43,7 @@ window.customElements.define('list-items', class extends GzDataElement {
       <h2>Items</h2>
       <input id="inp-add" placeholder="Item Name" />
       <button id="btn-add">Add</button>
+      <h2>Total:${this.total}</h2>
       <gz-for>
         <template>
           <list-item databind="${dataBinding}"></list-item>

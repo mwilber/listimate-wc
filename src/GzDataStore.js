@@ -41,7 +41,13 @@ export class GzDataStore{
                     
                 }
                 // Replace the target with the payload
-                targetRef[targetPath[targetPath.length-1]] = evt.detail.payload;
+                let finalPath = targetPath[targetPath.length-1];
+                let arrCk = finalPath.match(/([^\[]+)\[([^\]]+)/);
+                if(arrCk){
+                    targetRef[arrCk[1]][arrCk[2]] = evt.detail.payload;;
+                }else{
+                    targetRef[finalPath] = evt.detail.payload;;
+                }
                 
                 this._commitData(evt.detail.target);
                 

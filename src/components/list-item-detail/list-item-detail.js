@@ -44,8 +44,8 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
               target: this.getAttribute('databind'),
               payload: {
                 ...this._dataSet,
-                price: newPrice,
-                quantity: newQuantity
+                price: parseFloat(newPrice),
+                quantity: parseFloat(newQuantity)
               }
           }
         }));

@@ -34,7 +34,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 		const dataBinding = this.getAttribute('databind');
 
 		if(this._dataSet){
-			this.total = this._dataSet.reduce((prev, curr)=>{
+			this.total = this._dataSet.items.reduce((prev, curr)=>{
 				return prev + (parseFloat(curr.price) * parseFloat(curr.quantity));
 			}, 0);
 		}
@@ -51,12 +51,14 @@ window.customElements.define('list-items', class extends GzDataElement {
 			<h2>Total:${displayTotal}</h2>
 			<gz-for>
 				<template>
-					<list-item databind="${dataBinding}"></list-item>
+					<list-item databind="${dataBinding}.items"></list-item>
 				</template>
 			</gz-for>
 		`;
 
-		this.shadowRoot.querySelector('gz-for').dataSet = this._dataSet;
+		if(this._dataSet){
+			this.shadowRoot.querySelector('gz-for').dataSet = this._dataSet.items;
+		}
 
 		let btnAdd = this.shadowRoot.getElementById('btn-add');
 		btnAdd.addEventListener('click', (evt)=>{

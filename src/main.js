@@ -18,7 +18,11 @@ import { GzDataStoreFirebase } from './GzDataStoreFirebase';
 // }
 
 let dataStore = new GzDataStoreFirebase('listimate', {
-    lists: []
+    lists: [],
+    state: {
+        activeList: "",
+        activeItem: ""
+    }
 });
 
 window['dataStore'] = dataStore;

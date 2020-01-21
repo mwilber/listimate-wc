@@ -20,7 +20,14 @@
 <body>
     <div class="container">
         <list-lists dataBind="lists"></list-lists>
-        <list-items dataBind=""></list-items>
+        <gz-if dataBind="state.activeList" bind-child="byref">
+            <div slot="then">
+                <list-items dataBind=""></list-items>
+            </div>
+            <div slot="else">
+                <h1>Choose a list</h1>
+            </div>
+        </gz-if>
         <list-item-detail dataBind=""></list-item-detail>
         <gz-badge></gz-badge>
 	</div>

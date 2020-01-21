@@ -26,7 +26,13 @@ window.customElements.define('list-list', class extends GzDataElement {
 
     this.shadowRoot.querySelector('h2').addEventListener('click', function(evt){
       // Set list-items binding here
-      document.querySelector('list-items').setAttribute('dataBind', this.getAttribute('databind')+'.items');
+      document.querySelector('list-items').setAttribute('dataBind', this.getAttribute('databind'));
+      document.dispatchEvent(new CustomEvent('GzDataUpdate', {
+        detail:{
+            target: 'state.activeList',
+            payload: this.getAttribute('databind')
+        }
+      }));
     }.bind(this));
 
     this.shadowRoot.querySelector('.delete').addEventListener('click', function(evt){

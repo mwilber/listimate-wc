@@ -22,6 +22,7 @@
         <list-lists dataBind="lists"></list-lists>
         <gz-if dataBind="state.activeList" bind-child="byref">
             <div slot="then">
+                <gz-back></gz-back>
                 <list-items dataBind=""></list-items>
             </div>
             <div slot="else">

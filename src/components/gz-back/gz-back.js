@@ -22,7 +22,14 @@ window.customElements.define('gz-back', class extends GzDataElement {
       `;
 
       this.shadowRoot.querySelector('strong').addEventListener('click', function(evt){
-        this.shadowRoot.host.parentElement.parentElement.setAttribute('dataBind', '');
+        // TODO: Clean this up, can't rely on consistent node depth
+        let parentBinding = this.shadowRoot.host.parentElement.parentElement.getAttribute('dataBind');
+        document.dispatchEvent(new CustomEvent('GzDataUpdate', {
+          detail:{
+              target: parentBinding,
+              payload: ''
+          }
+        }));
       }.bind(this));
     }
 });

@@ -8,7 +8,8 @@ window.customElements.define('gz-back', class extends GzDataElement {
     }
     
     connectedCallback() {
-
+      this.render();
+      console.log('parent', this.shadowRoot.host.parentElement.parentElement);
     }
     
     render(){
@@ -19,5 +20,9 @@ window.customElements.define('gz-back', class extends GzDataElement {
         
         <strong>&lt;BACK</strong>
       `;
+
+      this.shadowRoot.querySelector('strong').addEventListener('click', function(evt){
+        this.shadowRoot.host.parentElement.parentElement.setAttribute('dataBind', '');
+      }.bind(this));
     }
 });

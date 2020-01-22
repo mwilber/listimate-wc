@@ -28,7 +28,15 @@
                 <h1>Choose a list</h1>
             </div>
         </gz-if>
-        <list-item-detail dataBind=""></list-item-detail>
+        <gz-if dataBind="state.activeItem" bind-child="byref">
+            <div slot="then">
+                <list-item-detail dataBind=""></list-item-detail>
+            </div>
+            <div slot="else">
+                <h1>Choose an Item</h1>
+            </div>
+        </gz-if>
+        
         <gz-badge></gz-badge>
 	</div>
 </body>

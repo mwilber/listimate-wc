@@ -1,1 +1,3 @@
-/* place component styles here */
+.checked{
+    text-decoration: line-through;
+}

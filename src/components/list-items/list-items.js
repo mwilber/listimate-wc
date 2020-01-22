@@ -18,13 +18,13 @@ window.customElements.define('list-items', class extends GzDataElement {
 	}
 
 	deleteItem(itemIdx){
-		let tmp = this._dataSet.filter(function(value, index, arr){
+		let tmp = this._dataSet.items.filter(function(value, index, arr){
 			return index != itemIdx;
 		});
 		
 		document.dispatchEvent(new CustomEvent('GzDataUpdate', {
 			detail:{
-				target: this.getAttribute('databind'),
+				target: this.getAttribute('databind')+'.items',
 				payload: tmp
 			}
 		}));
@@ -32,13 +32,17 @@ window.customElements.define('list-items', class extends GzDataElement {
 	
 	render(){
 		const dataBinding = this.getAttribute('databind');
+		let roundedTotal = 0;
 
 		if(this._dataSet){
+			this._dataSet.items = this._dataSet.items || [];
 			this.total = this._dataSet.items.reduce((prev, curr)=>{
+				roundedTotal += (Math.ceil(parseFloat(curr.price)) * parseFloat(curr.quantity))
 				return prev + (parseFloat(curr.price) * parseFloat(curr.quantity));
 			}, 0);
 		}
 		const displayTotal = this.total.toFixed(2);
+		const displayRounded = roundedTotal.toFixed(2);
 
 		this.shadowRoot.innerHTML = `
 			<style>
@@ -48,7 +52,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 			<h2>Items</h2>
 			<input id="inp-add" placeholder="Item Name" />
 			<button id="btn-add">Add</button>
-			<h2>Total:${displayTotal}</h2>
+			<h2>Total: ${displayRounded} [${displayTotal}]</h2>
 			<gz-for>
 				<template>
 					<list-item databind="${dataBinding}.items"></list-item>
@@ -65,11 +69,11 @@ window.customElements.define('list-items', class extends GzDataElement {
 			let inpName = this.shadowRoot.getElementById('inp-add');
 
 			if(inpName.value){
-				if(!this._dataSet) this._dataSet = [];
+				this._dataSet.items = this._dataSet.items || [];
 				document.dispatchEvent(new CustomEvent('GzDataUpdate', {
 					detail:{
-							target: this.getAttribute('databind'),
-							payload: [...this._dataSet, {...this.dataTemplate, name: inpName.value}]
+							target: this.getAttribute('databind')+'.items',
+							payload: [...this._dataSet.items, {...this.dataTemplate, name: inpName.value}]
 					}
 				}));
 				inpName.value = "";

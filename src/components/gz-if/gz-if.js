@@ -36,7 +36,9 @@ window.customElements.define('gz-if', class extends GzDataElement {
       if(bindChild){
         let template = this.shadowRoot.querySelector('slot').assignedNodes()[0];
         let boundChild = null;
-        if(template) boundChild = template.querySelector('*[databind]');
+        let backChild = null;
+        if(template) boundChild = template.querySelector('*[databind]:not(gz-back)');
+        if(template) backChild = template.querySelector('gz-back');
         if(boundChild){
           if(bindChild === "byref"){
             boundChild.setAttribute('dataBind', this.dataSet);
@@ -44,6 +46,9 @@ window.customElements.define('gz-if', class extends GzDataElement {
             boundChild.setAttribute('dataBind', this.getAttribute('databind'));
           }
         }
+        // if(backChild){
+        //   backChild.setAttribute('dataBind', this.getAttribute('databind'));
+        // }
       }
     }
 });

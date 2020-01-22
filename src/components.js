@@ -6,3 +6,4 @@ import './components/list-item-detail/list-item-detail';
 import './components/list-items/list-items.js';
 import './components/list-list/list-list.js';
 import './components/gz-if/gz-if.js';
+import './components/gz-back/gz-back.js';

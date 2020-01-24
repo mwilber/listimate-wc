@@ -20,11 +20,13 @@ window.customElements.define('list-list', class extends GzDataElement {
         ${cssData}
       </style>
       
-      <h2>name: ${name}</h2>
-      <button class="delete">&#10060;</button>
+      <div class="list-item">
+        ${name}
+        <button class="delete">&#10006;</button>
+      </div>
     `;
 
-    this.shadowRoot.querySelector('h2').addEventListener('click', function(evt){
+    this.shadowRoot.querySelector('.list-item').addEventListener('click', function(evt){
       document.dispatchEvent(new CustomEvent('GzDataUpdate', {
         detail:{
             target: 'state.activeList',

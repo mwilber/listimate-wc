@@ -1,1 +1,9 @@
-/* place component styles here */
+.list-item{
+    width: 90%;
+    padding: 5%;
+    color: #333;
+}
+
+.list-item .delete{
+    float:right;
+}

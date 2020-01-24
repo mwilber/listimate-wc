@@ -32,11 +32,11 @@ window.customElements.define('list-items', class extends GzDataElement {
 	
 	render(){
 		const dataBinding = this.getAttribute('databind');
+		const {name, items} = this._dataSet || {name: '', items:[]};
 		let roundedTotal = 0;
 
-		if(this._dataSet){
-			this._dataSet.items = this._dataSet.items || [];
-			this.total = this._dataSet.items.reduce((prev, curr)=>{
+		if(items){
+			this.total = items.reduce((prev, curr)=>{
 				roundedTotal += (Math.ceil(parseFloat(curr.price)) * parseFloat(curr.quantity))
 				return prev + (parseFloat(curr.price) * parseFloat(curr.quantity));
 			}, 0);
@@ -49,7 +49,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 				${cssData}
 			</style>
 			
-			<h2>Items</h2>
+			<h2>${name}</h2>
 			<input id="inp-add" placeholder="Item Name" />
 			<button id="btn-add">Add</button>
 			<h2>Total: ${displayRounded} [${displayTotal}]</h2>

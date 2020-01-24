@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web Component Test</title>
     <style type="text/css">
-                body{
+        body{
             background-color: #888;
             background-image: linear-gradient(45deg, #638f46 25%, #3c692b 25%, #3c692b 50%, #638f46 50%, #638f46 75%, #3c692b 75%, #3c692b 100%);
             background-size: 56.57px 56.57px;
@@ -52,6 +52,7 @@
         }
 
         .lists{
+            background-color: #f00;
             z-index: 1000;
         }
         @media only screen and (max-width: 768px) {
@@ -67,9 +68,11 @@
             }
         }
         .items{
+            background-color: #0f0;
             z-index: 500;
         }
         .detail{
+            background-color: #00f;
             z-index: 1;
         }
         @media only screen and (max-width: 480px) {
@@ -94,7 +97,7 @@
         <gz-if dataBind="state.activeList" bind-child="byref" class="col items">
             <div slot="then">
                 <gz-back></gz-back>
-                <list-items dataBind=""></list-items>
+               
             </div>
             <div slot="else">
                 <h1>Choose a list</h1>

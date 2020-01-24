@@ -14,6 +14,7 @@ module.exports = {
         maxAssetSize: 750000
     },
     devtool: 'source-map',
+    //devtool: 'eval',
     entry: {
         'main': path.join(dirApp, 'main'),
         'components': path.join(dirApp, 'components'),
@@ -28,6 +29,11 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js'
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     resolve: {
         modules: [
             dirNode,
@@ -39,8 +45,8 @@ module.exports = {
             template: path.join(__dirname, 'index.ejs'),
             inject: 'body',
             // Order of the script tags is important here. The polyfills have to load first.
-            chunks: ['webcomponents-loader', 'main', 'components'],
-            chunksSortMode: 'manual'
+            //chunks: ['webcomponents-loader', 'vendor', 'main', 'components'],
+            //chunksSortMode: 'manual'
         })
     ],
     module: {

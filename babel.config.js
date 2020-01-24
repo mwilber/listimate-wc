@@ -4,8 +4,7 @@ module.exports={
             "@babel/preset-env",
             {
                 targets:{
-                    "browsers": [">0.25%", "not op_mini all"],
-                    "uglify": true,
+                    "browsers": [">0.25%", "not op_mini all"]
                 },
                 useBuiltIns:"usage",
             }

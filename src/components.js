@@ -7,3 +7,4 @@ import './components/list-items/list-items.js';
 import './components/list-list/list-list.js';
 import './components/gz-if/gz-if.js';
 import './components/gz-back/gz-back.js';
+import './components/gz-toggle/gz-toggle.js';

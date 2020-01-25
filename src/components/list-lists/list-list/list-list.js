@@ -1,5 +1,5 @@
 import cssData from './list-list.css';
-import { GzDataElement } from '../GzDataElement';
+import { GzDataElement } from '../../gz-core/GzDataElement';
 
 window.customElements.define('list-list', class extends GzDataElement {
   

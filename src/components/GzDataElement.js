@@ -60,4 +60,13 @@ export class GzDataElement extends HTMLElement {
         <h2>GzDataElement</h2>
       `;
     }
+
+    DataUpdate(updateTarget, updatePayload){
+      document.dispatchEvent(new CustomEvent('GzDataUpdate', {
+        detail:{
+            target: updateTarget,
+            payload: updatePayload
+        }
+      }));
+    }
 }

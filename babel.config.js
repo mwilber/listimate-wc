@@ -6,7 +6,6 @@ module.exports={
                 targets:{
                     "browsers": [">0.25%", "not op_mini all"]
                 },
-                useBuiltIns:"usage",
             }
         ]
     ]

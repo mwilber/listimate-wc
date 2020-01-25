@@ -8,17 +8,13 @@ const dirApp = path.join(__dirname, 'src');
  * Webpack Configuration
  */
 module.exports = {
-    mode: 'production',
-    performance: {
-        maxEntrypointSize: 750000,
-        maxAssetSize: 750000
-    },
-    devtool: 'source-map',
-    //devtool: 'eval',
+    mode: 'development',
+    //devtool: false,
+    devtool: 'eval-source-map',
     entry: {
         'main': path.join(dirApp, 'main'),
         'components': path.join(dirApp, 'components'),
-        'webcomponents-loader': path.join('@webcomponents/webcomponentsjs', 'webcomponents-loader'),
+        //'webcomponents-loader': path.join('@webcomponents/webcomponentsjs', 'webcomponents-loader'),
         // Removing WC polyfill bundles for dev
         //'bundles/webcomponents-sd-ce-pf': path.join('@webcomponents/webcomponentsjs/bundles', 'webcomponents-sd-ce-pf'),
         //'bundles/webcomponents-sd-ce': path.join('@webcomponents/webcomponentsjs/bundles', 'webcomponents-sd-ce'),
@@ -28,11 +24,6 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js'
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-        },
     },
     resolve: {
         modules: [

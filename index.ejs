@@ -88,12 +88,11 @@
 </head>
 <body>
     <div class="header">
-        <gz-toggle dataBind="state.activeMenu" toggledValue="true">Menu</gz-toggle>
+        <gz-toggle dataBind="state.activeMenu" toggled-value="true">Menu</gz-toggle>
         <h1 class="logo">Listimate</h1>
     </div>
     <div class="container">
-        <gz-if dataBind="state.activeMenu" class="col lists">
-            
+        <gz-if dataBind="state.activeMenu" always-render="then" class="col lists">
             <list-lists slot="then" dataBind="lists"></list-lists>
         </gz-if>
         <gz-if dataBind="state.activeList" bind-child="byref" class="col items">

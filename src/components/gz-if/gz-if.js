@@ -6,6 +6,7 @@ window.customElements.define('gz-if', class extends GzDataElement {
     constructor(){
       super();
 
+      this._dataSet = "";
       this.render();
     }
 
@@ -22,8 +23,14 @@ window.customElements.define('gz-if', class extends GzDataElement {
     
     render(){
       let bindChild = this.getAttribute('bind-child');
-      let slotName = "else";
-      if(this.dataSet) slotName = "then";
+      let slotName = this.getAttribute('always-render');
+      if(!slotName) 
+        if(this.dataSet) slotName = "then"; 
+        else slotName = "else";
+
+      this.classList.remove('then', 'else');
+      if(this.dataSet) this.classList.add('then'); else this.classList.add('else');
+
       this.shadowRoot.innerHTML = `
         <style>
           ${cssData}

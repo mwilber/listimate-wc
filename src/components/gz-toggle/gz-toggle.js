@@ -22,7 +22,7 @@ window.customElements.define('gz-toggle', class extends GzDataElement {
       `;
 
       this.shadowRoot.querySelector('slot').addEventListener('click', function(evt){
-        let toggledVal = this.getAttribute('toggledvalue');
+        let toggledVal = this.getAttribute('toggled-value');
         if(this._dataSet === toggledVal){
           toggledVal = '';
         }

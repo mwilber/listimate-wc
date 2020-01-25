@@ -33,6 +33,12 @@ window.customElements.define('list-list', class extends GzDataElement {
             payload: this.getAttribute('databind')
         }
       }));
+      document.dispatchEvent(new CustomEvent('GzDataUpdate', {
+        detail:{
+            target: 'state.activeMenu',
+            payload: ''
+        }
+      }));
     }.bind(this));
 
     this.shadowRoot.querySelector('.delete').addEventListener('click', function(evt){

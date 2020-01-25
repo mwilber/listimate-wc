@@ -115,17 +115,11 @@
                 <gz-back></gz-back>
                 <list-items dataBind=""></list-items>
             </div>
-            <div slot="else">
-                <h1>Choose a list</h1>
-            </div>
         </gz-if>
         <gz-if dataBind="state.activeItem" bind-child="byref" class="col detail">
             <div slot="then">
                 <gz-back></gz-back>
                 <list-item-detail dataBind=""></list-item-detail>
-            </div>
-            <div slot="else">
-                <h1>Choose an Item</h1>
             </div>
         </gz-if>
         

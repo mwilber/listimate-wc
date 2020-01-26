@@ -1,1 +1,23 @@
-/* place component styles here */
+:host{
+    display: block;
+    font-size: 12px;
+    width: 100%;
+}
+
+.btn-back{
+    display: block;
+    width: 100%;
+    height: 2em;
+    padding: 1em;
+    text-align: left;
+    background: #999;
+}
+
+.btn-back svg{
+    height: 2em;
+    margin: 0;
+}
+
+.btn-back svg path{
+    fill: #fff;
+}

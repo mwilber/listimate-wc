@@ -23,15 +23,16 @@
 
 #btn-add{
     display: block;
-    width: 2.25em;
+    width: 2em;
+    height: 2em;
     padding: 1em;
     text-align: center;
     background: #999;
 }
 
 #btn-add svg{
-    height: 1.5em;
-    margin: 0.25em;
+    height: 2em;
+    margin: 0;
 }
 
 #btn-add svg path{

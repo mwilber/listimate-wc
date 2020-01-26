@@ -56,6 +56,16 @@
             float: left;
         }
 
+        gz-toggle.menu svg{
+            height: 1.5em;
+            margin: 0.25em;
+        }
+
+        gz-toggle.menu svg path{
+            fill: #fff;
+        }
+    
+
         .container{
             display: flex;
             margin-top: var(--logo-height);
@@ -70,6 +80,13 @@
             z-index: 1000;
             transition: left 500ms cubic-bezier(0.455, 0.030, 0.515, 0.955);
         }
+
+        .items gz-back{
+            display:none;
+        }
+
+
+
         @media only screen and (max-width: 768px) {
             .col.side-menu{
                 position: absolute;
@@ -99,14 +116,16 @@
                 width: 100%;
             }
             .col.then{
-                height: 100%;
+                height: calc(100% - var(--logo-height));
             }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <gz-toggle dataBind="state.activeMenu" toggled-value="true" class="menu">Menu</gz-toggle>
+        <gz-toggle dataBind="state.activeMenu" toggled-value="true" class="menu">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+        </gz-toggle>
         <h1 class="logo">Listimate</h1>
     </div>
     <div class="container">

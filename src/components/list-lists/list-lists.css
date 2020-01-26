@@ -1,3 +1,39 @@
 :host{
-    background: #fff;
+    display: block;
+    /* margin: 2% 4%;
+    border: solid 1px #000; */
+    font-size: 12px;
+}
+
+.input-group{
+    display: flex;
+    width: 100%;
+    /* border-top: solid 1px #999; */
+    border-bottom: solid 1px #999;
+}
+
+#inp-add{
+    display: block;
+    flex: 1;
+    padding: 0.75em 1em;
+    font-size: 1.5em;
+    background: #ffe;
+    border: none;
+}
+
+#btn-add{
+    display: block;
+    width: 2.25em;
+    padding: 1em;
+    text-align: center;
+    background: #999;
+}
+
+#btn-add svg{
+    height: 1.5em;
+    margin: 0.25em;
+}
+
+#btn-add svg path{
+    fill: #fff;
 }

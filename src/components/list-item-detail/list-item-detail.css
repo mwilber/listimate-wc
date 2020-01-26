@@ -1,1 +1,5 @@
-/* place component styles here */
+:host{
+    display: block;
+    margin: 2% 4%;
+    border: solid 1px #000;
+}

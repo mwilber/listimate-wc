@@ -1,7 +1,10 @@
 .list-item{
-    width: 100%;
-    padding: 20px 0;
+    width: calc(100% - 2em);
+    padding: 1.25em 1em;
     color: #333;
+    border-bottom: solid 1px #ccc;
+    background: #fefefe;
+    font-size: 1.5em;
 }
 
 .list-item .delete{

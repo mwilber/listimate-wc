@@ -1,10 +1,10 @@
 //import './components/gz-badge/gz-badge';
 import './components/gz-core/gz-for/gz-for';
-import './components/list-lists/list-lists';
-import './components/list-items/list-item/list-item';
-import './components/list-item-detail/list-item-detail';
-import './components/list-items/list-items';
-import './components/list-lists/list-list/list-list';
 import './components/gz-core/gz-if/gz-if';
 import './components/gz-core/gz-back/gz-back';
 import './components/gz-core/gz-toggle/gz-toggle';
+import './components/list-lists/list-lists';
+import './components/list-lists/list-list/list-list';
+import './components/list-items/list-items';
+import './components/list-items/list-item/list-item';
+import './components/list-item-detail/list-item-detail';

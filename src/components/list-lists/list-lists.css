@@ -28,6 +28,7 @@
     padding: 1em;
     text-align: center;
     background: #999;
+    background-color: var(--button-background-color);
 }
 
 #btn-add svg{
@@ -37,4 +38,5 @@
 
 #btn-add svg path{
     fill: #fff;
+    fill: var(--button-color);
 }

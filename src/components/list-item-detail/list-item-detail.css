@@ -54,3 +54,10 @@ button svg path{
     fill: #fff;
     fill: var(--button-color);
 }
+
+button.active{
+    background-color: var(--button-color);
+}
+button.active svg path{
+    fill: var(--button-background-color);
+}

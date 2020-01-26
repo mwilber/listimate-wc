@@ -11,6 +11,16 @@
     float:right;
 }
 
+.list-item .pinned{
+    display: none;
+}
+.list-item .pinned svg{
+    height: 1em;
+}
+.list-item.pinned .pinned{
+    display: inline-block;
+}
+
 .checked{
     text-decoration: line-through;
 }

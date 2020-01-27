@@ -17,6 +17,10 @@ window.customElements.define('list-items', class extends GzDataElement {
 		this.total = 0;
 	}
 
+	connectedCallback(){
+		this.shadowRoot.host.classList.add('rounded');
+	}
+
 	deleteItem(itemIdx){
 		let tmp = this._dataSet.items.filter(function(value, index, arr){
 			return index != itemIdx;
@@ -70,6 +74,10 @@ window.customElements.define('list-items', class extends GzDataElement {
 		if(this._dataSet){
 			this.shadowRoot.querySelector('gz-for').dataSet = this._dataSet.items;
 		}
+
+		this.shadowRoot.querySelector('.total-group').addEventListener('click', function(evt){
+			this.shadowRoot.host.classList.toggle('rounded');
+		}.bind(this));
 
 		let btnAdd = this.shadowRoot.getElementById('btn-add');
 		btnAdd.addEventListener('click', (evt)=>{

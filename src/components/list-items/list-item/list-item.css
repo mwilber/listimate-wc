@@ -1,3 +1,7 @@
+:host-context(.rounded) .checked {
+    display:none;
+}
+
 .list-item{
     width: calc(100% - 2em);
     padding: 0.75em 1em;

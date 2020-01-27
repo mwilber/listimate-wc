@@ -51,31 +51,36 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
       this.shadowRoot.querySelector('.save').addEventListener('click', function(evt){
         let newPrice = this.shadowRoot.querySelector('input[name="price"]').value;
         let newQuantity = this.shadowRoot.querySelector('input[name="quantity"]').value;
-        document.dispatchEvent(new CustomEvent('GzDataUpdate', {
-          detail:{
-              target: this.getAttribute('databind'),
-              payload: {
-                ...this._dataSet,
-                price: parseFloat(newPrice),
-                quantity: parseFloat(newQuantity)
-              }
-          }
-        }));
+        this.DataUpdate(this.getAttribute('databind'), {
+          ...this._dataSet,
+          price: parseFloat(newPrice),
+          quantity: parseFloat(newQuantity)
+        });
+        this.DataUpdate('state.activeItem', '');
       }.bind(this));
 
       this.shadowRoot.querySelector('.pin').addEventListener('click', function(evt){
         let newPin = 'true';
         if(this._dataSet) if(this._dataSet.pinned === 'true') newPin = 'false';
-        document.dispatchEvent(new CustomEvent('GzDataUpdate', {
-          detail:{
-              target: this.getAttribute('databind'),
-              payload: {
-                ...this._dataSet,
-                pinned: newPin
-              }
-          }
-        }));
+        this.DataUpdate(this.getAttribute('databind'), {
+          ...this._dataSet,
+          pinned: newPin
+        });
       }.bind(this));
+
+      const inputs = this.shadowRoot.querySelectorAll('input');
+      for (const input of inputs) {
+        input.addEventListener('click', function(evt){
+          if(this.value === '0'){
+            this.value = '';
+          }
+        }.bind(input));
+        input.addEventListener('blur', function(evt){
+          if(this.value === ''){
+            this.value = '0';
+          }
+        }.bind(input));
+      }
 
       this.shadowRoot.querySelector('.delete').addEventListener('click', function(evt){
         document.querySelector('list-items').deleteItem(parseInt(this.getAttribute('idx')));

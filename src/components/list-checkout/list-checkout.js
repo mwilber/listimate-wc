@@ -24,6 +24,7 @@ window.customElements.define('list-checkout', class extends GzDataElement {
 
       this.shadowRoot.querySelector('.button').addEventListener('click', function(){
         const freshList = this._dataSet.items.filter((item)=>{
+          if( parseFloat(item.price) == 0 ) return true;
           if(item.hasOwnProperty('pinned')){
             if(item.pinned == "true") return true;
           }

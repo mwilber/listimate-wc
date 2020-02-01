@@ -8,3 +8,4 @@ import './components/list-lists/list-list/list-list';
 import './components/list-items/list-items';
 import './components/list-items/list-item/list-item';
 import './components/list-item-detail/list-item-detail';
+import './components/list-checkout/list-checkout.js';

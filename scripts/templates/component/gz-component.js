@@ -5,15 +5,15 @@ window.customElements.define('gz-component', class extends HTMLElement {
     constructor(){
       super();
       let shadowRoot = this.attachShadow({mode: 'open'});
-      shadowRoot.innerHTML = this.render();
     }
     
     connectedCallback() {
+      this.render();
       console.log('gz-component loaded');
     }
     
     render(){
-      return `
+      this.shadowRoot.innerHTML = `
         <style>
           ${cssData}
         </style>

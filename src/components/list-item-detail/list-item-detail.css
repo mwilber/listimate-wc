@@ -6,12 +6,16 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
-    padding: 2em;
-    /* height: calc(100vh - 88px); */
+    height: calc(100vh - var(--logo-height) - 4em);
+}
+
+h1{
+    flex: 0 1;
+    margin: 1em;
 }
 
 .input-group{
-    flex: 1 0 100%;
+    flex: 0 1;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-gap: 10px;
@@ -21,6 +25,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    margin: 1em;
 }
 
 .inc-group button{
@@ -48,6 +53,15 @@ input{
     padding: 0.5em 0;
     vertical-align: top;
     text-align: center;
+}
+
+.button-group{
+    flex: 1;
+    margin: auto 1em
+}
+
+.button-group button{
+    margin-bottom: auto;
 }
 
 button{

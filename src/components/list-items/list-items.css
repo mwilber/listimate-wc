@@ -5,6 +5,7 @@
     font-size: 12px;
     display:flex;
     flex-direction: column;
+    height: calc(100vh - var(--logo-height));
 }
 
 .rounded{

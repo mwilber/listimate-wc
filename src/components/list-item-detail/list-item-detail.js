@@ -100,10 +100,7 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
 
       this.shadowRoot.querySelector('.delete').addEventListener('click', function(evt){
         document.querySelector('list-items').deleteItem(parseInt(this.getAttribute('idx')));
-        this.setAttribute("dataBind", "");
-        this.setAttribute("idx", "");
-        this._clearDataSet();
-        this.render();
+        this.DataUpdate('state.activeItem', '');
       }.bind(this));
     }
   }

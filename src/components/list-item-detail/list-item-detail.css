@@ -80,6 +80,11 @@ input{
     background-color: var(--alert-background-color);
 }
 
+.button-group button.save path,
+.button-group button.delete path{
+    fill: #fff;
+}
+
 button,
 button:active, 
 button:focus{

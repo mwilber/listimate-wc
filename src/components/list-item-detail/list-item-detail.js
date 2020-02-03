@@ -36,8 +36,8 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
             <label>qty</label>
             <input name="quantity" type="number" value="${quantity}"/>
             <div class="inc-group">
-              <button>+</button>
-              <button>-</button>
+              <button class="inc">+</button>
+              <button class="dec">-</button>
             </div>
         </div>
         <div class="button-group">
@@ -53,6 +53,16 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
         </div>
         <!--<code>${dataSet}</code>-->
       `;
+
+      this.shadowRoot.querySelector('.inc-group .inc').addEventListener('click', function(evt){
+        const quantity = this.shadowRoot.querySelector('input[name="quantity"]');
+        quantity.value = parseFloat(quantity.value)+1;
+      }.bind(this));
+
+      this.shadowRoot.querySelector('.inc-group .dec').addEventListener('click', function(evt){
+        const quantity = this.shadowRoot.querySelector('input[name="quantity"]');
+        quantity.value = Math.max(parseFloat(quantity.value)-1, 0);
+      }.bind(this));
 
       this.shadowRoot.querySelector('.save').addEventListener('click', function(evt){
         let newPrice = this.shadowRoot.querySelector('input[name="price"]').value;

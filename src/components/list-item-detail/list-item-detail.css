@@ -25,7 +25,7 @@ h1{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 1em;
+    margin: 0 1em;
 }
 
 .inc-group button{
@@ -57,11 +57,17 @@ input{
 
 .button-group{
     flex: 1;
-    margin: auto 1em
+    margin: 1em 1em auto 1em
 }
 
 .button-group button{
     margin-bottom: auto;
+}
+
+button,
+button:active, 
+button:focus{
+    outline: none;
 }
 
 button{
@@ -87,9 +93,11 @@ button svg path{
     fill: var(--button-color);
 }
 
-button.active{
+button.active, button:active{
+    color: var(--button-background-color);
     background-color: var(--button-color);
 }
+button:active svg path,
 button.active svg path{
     fill: var(--button-background-color);
 }

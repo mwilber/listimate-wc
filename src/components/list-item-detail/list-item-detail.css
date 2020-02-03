@@ -48,20 +48,36 @@ label{
 input{
     width: 100%;
     font-size: 3em;
-    background: #ffe;
-    border: solid 1px #666;
+    color: var(--input-color);
+    background: var(--input-background-color);
+    border: solid 1px #ccc;
     padding: 0.5em 0;
     vertical-align: top;
     text-align: center;
 }
 
 .button-group{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
     flex: 1;
     margin: 1em 1em auto 1em
 }
 
 .button-group button{
     margin-bottom: auto;
+    flex: 1;
+    margin-bottom: 0.5em;
+}
+
+.button-group button.save{
+    flex: 2;
+    margin-top: 2em;
+    background-color: var(--accent-background-color);
+}
+
+.button-group button.delete{
+    background-color: var(--alert-background-color);
 }
 
 button,

@@ -3,6 +3,7 @@
 }
 
 .list-item{
+    display: flex;
     width: calc(100% - 2em);
     padding: 0.75em 1em;
     color: #333;
@@ -11,18 +12,29 @@
     font-size: 1.5em;
 }
 
+.list-item span{
+    flex: 0;
+}
+
+.list-item span.item-name{
+    flex: 1;
+}
+
 .list-item .delete{
     float:right;
 }
 
 .list-item .pinned{
-    display: none;
+    display: inline-block;
+    margin-right: 1em;
 }
+
 .list-item .pinned svg{
+    opacity: 0;
     height: 1em;
 }
-.list-item.pinned .pinned{
-    display: inline-block;
+.list-item.pinned .pinned svg{
+    opacity: 1;
 }
 
 .checked{

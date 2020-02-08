@@ -60,13 +60,13 @@ export class GzDataStoreFirebase extends GzDataStore{
 
     _commitData(refreshTarget){
         if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
+        
+        this._refresh(refreshTarget);
 
         this.dbRef.set(this.dataStore).then((result)=>{
             console.log('saved to firebase');
         }).catch((result)=>{
             console.error('firebase save faild', result);
         });
-
-        this._refresh(refreshTarget);
     }
 }

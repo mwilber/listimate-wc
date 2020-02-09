@@ -1,8 +1,10 @@
 :host{
-    display: block;
+    display: flex;
+    flex-direction: column;
     /* margin: 2% 4%;
     border: solid 1px #000; */
     font-size: 12px;
+    height: calc(100vh - var(--logo-height));
 }
 
 .input-group{
@@ -10,6 +12,7 @@
     width: 100%;
     /* border-top: solid 1px #999; */
     border-bottom: solid 1px #999;
+    flex: 0;
 }
 
 #inp-add{
@@ -40,4 +43,79 @@
 #btn-add svg path{
     fill: #fff;
     fill: var(--button-color);
+}
+
+gz-for{
+    flex:1;
+    flex-grow: 1;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.button-group{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    flex: 1;
+    margin: 1em 1em auto 1em
+}
+
+.button-group button{
+    margin-bottom: auto;
+    flex: 1;
+    margin-bottom: 0.5em;
+}
+
+.button-group button.save{
+    flex: 2;
+    margin-top: 2em;
+    background-color: var(--accent-background-color);
+}
+
+.button-group button.delete{
+    background-color: var(--alert-background-color);
+}
+
+.button-group button.save path,
+.button-group button.delete path{
+    fill: #fff;
+}
+
+button,
+button:active, 
+button:focus{
+    outline: none;
+}
+
+button{
+    display:block;
+    width: 100%;
+    background: #999;
+    background-color: var(--button-background-color);
+    border: none;
+    color: var(--button-color);
+    border-radius: 5px;
+    padding: 0.75em;
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+button svg{
+    height: 1.5em;
+    margin: 0;
+}
+
+button svg path{
+    fill: #fff;
+    fill: var(--button-color);
+}
+
+button.active, button:active{
+    color: var(--button-background-color);
+    background-color: var(--button-color);
+}
+button:active svg path,
+button.active svg path{
+    fill: var(--button-background-color);
 }

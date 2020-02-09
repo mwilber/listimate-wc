@@ -7,6 +7,7 @@ window.customElements.define('list-lists', class extends GzDataElement {
       super();
 
       this._dataSet = null;
+      this.manageLists = "";
     }
 
     deleteItem(itemIdx){
@@ -39,9 +40,12 @@ window.customElements.define('list-lists', class extends GzDataElement {
         </div>
         <gz-for>
           <template>
-            <list-list databind="lists"></list-list>
+            <list-list databind="lists" class="${this.manageLists}"></list-list>
           </template>
         </gz-for>
+        <div class="btn-group">
+          <button class="manage">MANAGE</button>
+        </div>
       `;
 
       this.shadowRoot.querySelector('gz-for').dataSet = this._dataSet;
@@ -60,6 +64,12 @@ window.customElements.define('list-lists', class extends GzDataElement {
           inpName.value = "";
         }
         
+      });
+
+      let btnManage = this.shadowRoot.querySelector('.manage');
+      btnManage.addEventListener('click', (evt)=>{
+        this.manageLists = (this.manageLists === 'manage')?'':'manage';
+        this.render();
       });
     }
 });

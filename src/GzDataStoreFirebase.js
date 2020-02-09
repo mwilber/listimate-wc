@@ -60,9 +60,9 @@ export class GzDataStoreFirebase extends GzDataStore{
 
     _commitData(refreshTarget){
         if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
-        
+        // Refresh immediately after updating localstorage to update the UI
         this._refresh(refreshTarget);
-
+        // Save out to firebase. This will trigger its own refresh from 'value' listener above
         this.dbRef.set(this.dataStore).then((result)=>{
             console.log('saved to firebase');
         }).catch((result)=>{

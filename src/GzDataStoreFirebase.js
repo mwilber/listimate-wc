@@ -37,13 +37,7 @@ export class GzDataStoreFirebase extends GzDataStore{
                 this.userId = uid;
                 this.dbRef = firebase.database().ref(this.userId);
         
-                this.dbRef.on('value', function(snapshot) {
-                    if(snapshot.val()){
-                        this.dataStore = snapshot.val();
-                        if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
-                        this._refresh();
-                    }
-                }.bind(this));
+                this.dbRef.on('value', this._setRemoteData.bind(this));
         
             } else {
                 console.log('not logged in')
@@ -56,6 +50,16 @@ export class GzDataStoreFirebase extends GzDataStore{
             var errorMessage = error.message;
             console.log('auth error', errorCode, errorMessage)
         });
+    }
+
+    _setRemoteData(snapshot) {
+        console.log("TCL: GzDataStoreFirebase -> _setRemoteData -> snapshot", snapshot)
+        
+        if(snapshot.val()){
+            this.dataStore = snapshot.val();
+            if(window.localStorage) window.localStorage.setItem(this.dataStoreName, JSON.stringify(this.dataStore));
+            this._refresh();
+        }
     }
 
     _commitData(refreshTarget){

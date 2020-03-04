@@ -24,6 +24,14 @@
     float:right;
 }
 
+.list-item .item-quantity{
+    padding-left: 5px;
+}
+
+.list-item.zero .item-price{
+    display: none;
+}
+
 .list-item .pinned{
     display: inline-block;
     margin-right: 1em;

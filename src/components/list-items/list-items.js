@@ -46,7 +46,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 			}, 0);
 		}
 		const displayTotal = this.total.toFixed(2);
-		const displayRounded = roundedTotal.toFixed(2);
+		const displayRounded = Math.floor(roundedTotal);
 
 		this.shadowRoot.innerHTML = `
 			<style>
@@ -61,6 +61,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 				</div>
 			</div>
 			<div class="total-group">
+				<span class="dollar-sign">$</span>
 				<span class="rounded">${displayRounded}</span>
 				<span class="actual">${displayTotal}</span>
 			</div>

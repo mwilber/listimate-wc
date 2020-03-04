@@ -12,6 +12,12 @@
     display: none;
 }
 
+.dollar-sign{
+    color: #a7beb3;
+    vertical-align: text-top;
+    font-size: 0.75em;
+}
+
 :host-context(.rounded) .actual {
     display:none;
 }

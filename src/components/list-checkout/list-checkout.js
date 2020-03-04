@@ -23,18 +23,20 @@ window.customElements.define('list-checkout', class extends GzDataElement {
         `;
 
       this.shadowRoot.querySelector('.button').addEventListener('click', function(){
-        const freshList = this._dataSet.items.filter((item)=>{
-          if( parseFloat(item.price) == 0 ) return true;
-          if(item.hasOwnProperty('pinned')){
-            if(item.pinned == "true") return true;
+        if(window.confirm("Are you sure?")){
+          const freshList = this._dataSet.items.filter((item)=>{
+            if( parseFloat(item.price) == 0 ) return true;
+            if(item.hasOwnProperty('pinned')){
+              if(item.pinned == "true") return true;
+            }
+            return false;
+          });
+          for(let item of freshList){
+            item.price = 0;
           }
-          return false;
-        });
-        for(let item of freshList){
-          item.price = 0;
+          console.log('checkout', this.getAttribute('databind')+'.items', freshList);
+          this.DataUpdate(this.getAttribute('databind')+'.items', freshList);
         }
-        console.log('checkout', this.getAttribute('databind')+'.items', freshList);
-        this.DataUpdate(this.getAttribute('databind')+'.items', freshList)
       }.bind(this));
     }
 });

@@ -31,10 +31,10 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
         <h1>${name}</h1>
         <div class="input-group">
             <label>$</label>
-            <input name="price" type="number" value="${price}"/>
+            <input name="price" inputmode="numeric" value="${price}"/>
             <div class="inc-group"></div>
             <label>qty</label>
-            <input name="quantity" type="number" value="${quantity}"/>
+            <input name="quantity" inputmode="numeric" value="${quantity}"/>
             <div class="inc-group">
               <button class="inc">+</button>
               <button class="dec">-</button>

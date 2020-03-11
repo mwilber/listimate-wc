@@ -47,7 +47,11 @@ window.customElements.define('gz-for', class extends HTMLElement {
       if(Array.isArray(this._dataSet)){
         let container = this.shadowRoot.querySelector('.gz-for-container');
         // Grab the template tag from the slot
+        let test = this.shadowRoot.querySelector('slot').assignedNodes()[1];
+        //console.log("extends -> render -> test", test)
+        
         let template = this.shadowRoot.querySelector('slot').assignedNodes()[1].content;
+        
         // Loop through the data set and apply a template for each item
         for(let idx=0; idx<this._dataSet.length; idx++){
           let newChildNode = template.cloneNode(true);
@@ -58,12 +62,14 @@ window.customElements.define('gz-for', class extends HTMLElement {
           container.appendChild(newChildNode);
           // Search and replace the innerHTML string for template strings matching the data object's properties
           // TODO: Figure out a way to do this without setting innerHTML. Reloads all the child components each time.
-          container.innerHTML = container.innerHTML.replace(
-            /{(\w*)}/g ,
-            function( m, key ){
-              return this.hasOwnProperty( key ) ? this[ key ] : "";
-            }.bind(this._dataSet[idx])
-          );
+          // container.innerHTML = container.innerHTML.replace(
+          //   /{(\w*)}/g ,
+          //   function( m, key ){
+          //   console.log("extends -> render -> key", key)
+              
+          //     return this.hasOwnProperty( key ) ? this[ key ] : "";
+          //   }.bind(this._dataSet[idx])
+          // );
         }
       }
     }

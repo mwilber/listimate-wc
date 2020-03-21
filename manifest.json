@@ -1,95 +1,114 @@
 {
-	"dir" : "ltr",
-	"lang" : "English",
-	"name" : "Listimate",
-	"scope" : "/",
-	"display" : "fullscreen",
-	"start_url" : "https://listimate.greenzeta.com/",
-	"short_name" : "Listimate",
-	"theme_color" : "transparent",
-	"description" : "Budget conscious shopping lists/",
-	"orientation" : "portrait",
-	"background_color" : "transparent",
-	"related_applications" : [],
-	"prefer_related_applications" : false,
-	"icons" : [
-		{
-			"src": "[Embedded]",
-			"sizes": "44x44"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "48x48"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "1240x600"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "300x300"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "150x150"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "88x88"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "24x24"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "50x50"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "620x300"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "192x192"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "144x144"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "96x96"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "72x72"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "36x36"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "1024x1024"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "180x180"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "152x152"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "120x120"
-		},
-		{
-			"src": "[Embedded]",
-			"sizes": "76x76"
-		}],
-	"url" : "https://listimate.greenzeta.com",
-	"screenshots" : [],
-	"generated" : "true"
+    "dir": "ltr",
+    "lang": "English",
+    "name": "Listimate",
+    "scope": "/",
+    "display": "fullscreen",
+    "start_url": "https://listimate.greenzeta.com/",
+    "short_name": "Listimate",
+    "theme_color": "transparent",
+    "description": "Budget conscious shopping lists/",
+    "orientation": "portrait",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/assets/icons/d375d865-51b9-c5b2-9395-adfd55395468.webPlatform.png",
+            "sizes": "44x44",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/4eb5cef2-f491-2cfa-873a-76618355b203.webPlatform.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/0895ebd8-beee-8fe6-a5a6-0f3c733153ed.webPlatform.png",
+            "sizes": "1240x600",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/e82b89c8-72f2-f860-e50f-9a45555bbf42.webPlatform.png",
+            "sizes": "300x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/2d571ce5-d23b-2555-e35e-c33ef9bb5b78.webPlatform.png",
+            "sizes": "150x150",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/f6c1d6d6-32bd-a46b-a6d5-abcdfe288d1d.webPlatform.png",
+            "sizes": "88x88",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/9de9e106-1cc5-2057-d992-590556825f2b.webPlatform.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/6783130c-b7b8-7be9-f292-f98e428cc80f.webPlatform.png",
+            "sizes": "50x50",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/46bdd74c-7ada-1d24-f395-63abab4e5ee2.webPlatform.png",
+            "sizes": "620x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/6eab9e6d-6dbe-3453-3656-a315bddf304b.webPlatform.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/159f6010-20fb-1ad2-896e-59edb6cd8877.webPlatform.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/6c7965aa-8b4f-c641-4d41-c47c4d6d02f4.webPlatform.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/b62164af-02f2-745c-a417-d5cce084ecfb.webPlatform.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/2ffe634c-d3e5-ed81-f22e-0e2a28284b80.webPlatform.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/dacefaf0-56eb-e7ed-8d00-a4f45ce1bbbd.webPlatform.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/21c33ecf-45c3-5e35-0454-5b360db74596.webPlatform.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/0d0f9887-cf76-abf3-9fc5-d4c735004881.webPlatform.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/0ce6a298-1c1b-b042-e0dc-ae206c92ca38.webPlatform.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icons/8e4830de-174b-ea1c-c3f5-8463b40a9d1d.webPlatform.png",
+            "sizes": "76x76",
+            "type": "image/png"
+        }
+    ],
+    "url": "https://listimate.greenzeta.com",
+    "screenshots": []
 }

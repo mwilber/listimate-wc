@@ -3,14 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const dirNode = 'node_modules';
 const dirApp = path.join(__dirname, 'src');
+const dirAssets = path.join(__dirname, 'assets');
+const serviceWorker = path.join(__dirname, 'service-worker.js');
 
 /**
  * Webpack Configuration
  */
 module.exports = {
-    mode: 'development',
-    //devtool: false,
-    devtool: 'eval-source-map',
+    
     entry: {
         'main': path.join(dirApp, 'main'),
         'components': path.join(dirApp, 'components'),
@@ -20,6 +20,7 @@ module.exports = {
         //'bundles/webcomponents-sd-ce': path.join('@webcomponents/webcomponentsjs/bundles', 'webcomponents-sd-ce'),
         //'bundles/webcomponents-sd': path.join('@webcomponents/webcomponentsjs/bundles', 'webcomponents-sd'),
         //'bundles/webcomponents-ce': path.join('@webcomponents/webcomponentsjs/bundles', 'webcomponents-ce')
+        'service-worker': serviceWorker
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -28,7 +29,8 @@ module.exports = {
     resolve: {
         modules: [
             dirNode,
-            dirApp
+            dirApp,
+            dirAssets
         ]
     },
     plugins: [
@@ -60,6 +62,14 @@ module.exports = {
             {
                 test: /\.svg$/,
                 loader: 'svg-inline-loader'
+            },
+            // IMAGES
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]'
+                }
             }
         ]
     }

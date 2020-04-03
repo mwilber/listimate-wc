@@ -1,4 +1,4 @@
-var CACHE_VERSION = '2';	// Increment this by 1 to delete and recreate all of the current caches
+var CACHE_VERSION = '3';	// Increment this by 1 to delete and recreate all of the current caches
 var CACHE_NAME_STATIC = 'gz-lst-static';
 var CACHE_NAME_DYNAMIC = 'gz-lst-dynamic'; 
 
@@ -35,7 +35,7 @@ self.addEventListener('activate', function(event){
 
 
 self.addEventListener('fetch', (event) => {
-	console.log('[SW]', 'fetch event', event);
+	//console.log('[SW]', 'fetch event', event);
 
 	event.respondWith(
         caches.match(event.request)

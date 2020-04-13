@@ -55,6 +55,9 @@ window.customElements.define('list-lists', class extends GzDataElement {
         let inpName = this.shadowRoot.getElementById('inp-add');
 
         if(inpName.value){
+          if(this._dataSet == null){
+            this._dataSet = [];
+          }
           document.dispatchEvent(new CustomEvent('GzDataUpdate', {
             detail:{
                 target: this.getAttribute('databind'),

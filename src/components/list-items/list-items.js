@@ -38,9 +38,11 @@ window.customElements.define('list-items', class extends GzDataElement {
 		const dataBinding = this.getAttribute('databind');
 		const {name, items} = this._dataSet || {name: '', items:[]};
 		let roundedTotal = 0;
+		let displayCount = 0;
 
 		if(items){
 			this.total = items.reduce((prev, curr)=>{
+				if(parseFloat(curr.price) == 0 || parseFloat(curr.quantity) == 0) displayCount++;
 				roundedTotal += (Math.ceil(parseFloat(curr.price)) * parseFloat(curr.quantity))
 				return prev + (parseFloat(curr.price) * parseFloat(curr.quantity));
 			}, 0);
@@ -64,6 +66,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 				<span class="dollar-sign">$</span>
 				<span class="rounded">${displayRounded}</span>
 				<span class="actual">${displayTotal}</span>
+				<span class="count">${displayCount}</span>
 			</div>
 			<gz-for>
 				<template>
@@ -82,6 +85,10 @@ window.customElements.define('list-items', class extends GzDataElement {
 
 		let btnAdd = this.shadowRoot.getElementById('btn-add');
 		btnAdd.addEventListener('click', (evt)=>{
+			let storeName = "";
+			if(this._dataSet && this._dataSet.stores)
+				storeName = Object.keys(this._dataSet.stores).find((store) => this._dataSet.stores[store]);
+
 			let inpName = this.shadowRoot.getElementById('inp-add');
 
 			if(inpName.value){
@@ -89,7 +96,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 				document.dispatchEvent(new CustomEvent('GzDataUpdate', {
 					detail:{
 							target: this.getAttribute('databind')+'.items',
-							payload: [...this._dataSet.items, {...this.dataTemplate, name: inpName.value}]
+							payload: [...this._dataSet.items, {...this.dataTemplate, store:storeName, name: inpName.value}]
 					}
 				}));
 				inpName.value = "";

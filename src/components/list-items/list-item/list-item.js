@@ -47,6 +47,7 @@ window.customElements.define('list-item', class extends GzDataElement {
         }));
         // TODO: Parse this out directly in the detail component
         document.querySelector('list-item-detail').setAttribute('idx', this.getAttribute('idx'));
+        document.querySelector('list-item-detail').setAttribute('data-store', this.getAttribute('data-store'));
       }.bind(this));
     }
 });

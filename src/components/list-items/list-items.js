@@ -50,6 +50,10 @@ window.customElements.define('list-items', class extends GzDataElement {
 		const displayTotal = this.total.toFixed(2);
 		const displayRounded = Math.floor(roundedTotal);
 
+		let storeName = "";
+		if(this._dataSet && this._dataSet.stores)
+			storeName = Object.keys(this._dataSet.stores).find((store) => this._dataSet.stores[store]);
+
 		this.shadowRoot.innerHTML = `
 			<style>
 				${cssData}
@@ -70,7 +74,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 			</div>
 			<gz-for>
 				<template>
-					<list-item databind="${dataBinding}.items"></list-item>
+					<list-item databind="${dataBinding}.items" data-store="${storeName}"></list-item>
 				</template>
 			</gz-for>
 		`;
@@ -85,9 +89,6 @@ window.customElements.define('list-items', class extends GzDataElement {
 
 		let btnAdd = this.shadowRoot.getElementById('btn-add');
 		btnAdd.addEventListener('click', (evt)=>{
-			let storeName = "";
-			if(this._dataSet && this._dataSet.stores)
-				storeName = Object.keys(this._dataSet.stores).find((store) => this._dataSet.stores[store]);
 
 			let inpName = this.shadowRoot.getElementById('inp-add');
 
@@ -96,7 +97,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 				document.dispatchEvent(new CustomEvent('GzDataUpdate', {
 					detail:{
 							target: this.getAttribute('databind')+'.items',
-							payload: [...this._dataSet.items, {...this.dataTemplate, store:storeName, name: inpName.value}]
+							payload: [...this._dataSet.items, {...this.dataTemplate, name: inpName.value}]
 					}
 				}));
 				inpName.value = "";

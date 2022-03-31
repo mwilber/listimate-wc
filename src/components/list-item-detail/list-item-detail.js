@@ -72,9 +72,16 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
           price: parseFloat(newPrice),
           quantity: parseFloat(newQuantity)
         });
-        this.DataUpdate('prices.BLAH', {
-          WalMart: 7
-        });
+        if(this.dataset.store && parseFloat(newPrice)) {
+          this.DataUpdate(
+            'prices.' + 
+            this._dataSet.name.toUpperCase() + 
+            '.' + 
+            this.dataset.store, 
+            parseFloat(newPrice)
+          );
+        }
+
         this.DataUpdate('state.activeItem', '');
       }.bind(this));
 

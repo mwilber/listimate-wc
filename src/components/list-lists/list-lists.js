@@ -61,7 +61,15 @@ window.customElements.define('list-lists', class extends GzDataElement {
           document.dispatchEvent(new CustomEvent('GzDataUpdate', {
             detail:{
                 target: this.getAttribute('databind'),
-                payload: [...this._dataSet, {name: inpName.value, number: 0, items: []}]
+                payload: [...this._dataSet, {
+                  name: inpName.value, 
+                  number: 0, 
+                  stores: {
+                    WalMart: true,
+                    Aldi: false
+                  },
+                  items: []
+              }]
             }
           }));
           inpName.value = "";

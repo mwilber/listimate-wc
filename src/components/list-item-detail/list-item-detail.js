@@ -72,6 +72,9 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
           price: parseFloat(newPrice),
           quantity: parseFloat(newQuantity)
         });
+        this.DataUpdate('prices.BLAH', {
+          WalMart: 7
+        });
         this.DataUpdate('state.activeItem', '');
       }.bind(this));
 

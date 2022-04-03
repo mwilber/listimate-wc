@@ -4,6 +4,7 @@
 
 .list-item{
     display: flex;
+    flex-flow: wrap;
     width: calc(100% - 2em);
     padding: 0.75em 1em;
     color: #333;
@@ -48,3 +49,9 @@
 .checked{
     text-decoration: line-through;
 }
+
+.list-item span.break {
+    display: block;
+    flex-basis: 100%;
+    height: 0;
+  }

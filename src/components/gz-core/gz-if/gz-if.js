@@ -43,13 +43,17 @@ window.customElements.define('gz-if', class extends GzDataElement {
       if(bindChild){
         let template = this.shadowRoot.querySelector('slot').assignedNodes()[0];
         let boundChild = null;
-        if(template) boundChild = template.querySelector('*[databind]');
+        if(template) boundChild = template.querySelectorAll('*[databind]');
         if(boundChild){
-          if(bindChild === "byref"){
-            boundChild.setAttribute('dataBind', this.dataSet);
-          }else if(bindChild === "byval"){
-            boundChild.setAttribute('dataBind', this.getAttribute('databind'));
-          }
+          boundChild.forEach(
+            (el) => {
+              if(bindChild === "byref"){
+                el.setAttribute('dataBind', this.dataSet);
+              }else if(bindChild === "byval"){
+                el.setAttribute('dataBind', this.getAttribute('databind'));
+              }
+            }
+          );
         }
       }
     }

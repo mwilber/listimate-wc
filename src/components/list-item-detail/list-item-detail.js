@@ -111,7 +111,7 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
       this.shadowRoot.querySelector('.defer').addEventListener('click', function(evt){
         this.DataUpdate(this.getAttribute('databind'), {
           ...this._dataSet,
-          defer: true
+          defer: !this._dataSet.defer
         });
         this.DataUpdate('state.activeItem', '');
       }.bind(this));

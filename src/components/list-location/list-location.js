@@ -21,7 +21,7 @@ window.customElements.define('list-location', class extends GzDataElement {
         </style>
         
         <div class="button">
-        ${displayLabel}
+        ${displayLabel.substring(0,3)}
         </div>
         `;
 

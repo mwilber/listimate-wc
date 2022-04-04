@@ -33,6 +33,7 @@ window.customElements.define('list-checkout', class extends GzDataElement {
           });
           for(let item of freshList){
             item.price = 0;
+            item.defer = false;
           }
           console.log('checkout', this.getAttribute('databind')+'.items', freshList);
           this.DataUpdate(this.getAttribute('databind')+'.items', freshList);

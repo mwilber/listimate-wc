@@ -40,9 +40,14 @@ window.customElements.define('list-items', class extends GzDataElement {
 		let roundedTotal = 0;
 		let displayCount = 0;
 
+		// Dump the list to the console
+		// console.log(
+		// 	items.map((item)=>item.name)
+		// );
+
 		if(items){
 			this.total = items.reduce((prev, curr)=>{
-				if(parseFloat(curr.price) == 0 || parseFloat(curr.quantity) == 0) displayCount++;
+				if(!curr.defer &&(parseFloat(curr.price) == 0 || parseFloat(curr.quantity) == 0)) displayCount++;
 				roundedTotal += (Math.ceil(parseFloat(curr.price)) * parseFloat(curr.quantity))
 				return prev + (parseFloat(curr.price) * parseFloat(curr.quantity));
 			}, 0);

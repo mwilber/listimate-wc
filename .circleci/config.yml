@@ -70,7 +70,7 @@ workflows:
           filters:
             branches:
               only: master
-      - build:
+      - builddev:
             filters:
               branches:
                 only: price-compare

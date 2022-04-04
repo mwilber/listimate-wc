@@ -13,8 +13,9 @@ window.customElements.define('list-item', class extends GzDataElement {
     }
     
     render(){
-      const {name, price, quantity, pinned} = this._dataSet;
-      const elemClass = (price > 0 && quantity > 0)? 'checked' : '';
+      const {name, price, quantity, pinned, defer} = this._dataSet;
+      let elemClass = (price > 0 && quantity > 0)? 'checked' : '';
+      elemClass += (defer)? ' deferred' : '';
 
       this.shadowRoot.innerHTML = `
         <style>

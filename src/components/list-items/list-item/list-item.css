@@ -1,4 +1,5 @@
-:host-context(.rounded) .checked {
+:host-context(.rounded) .checked,
+:host-context(.rounded) .deferred {
     display:none;
 }
 
@@ -48,6 +49,10 @@
 
 .checked{
     text-decoration: line-through;
+}
+
+.deferred{
+    color: #ccc;
 }
 
 .list-item span.break {

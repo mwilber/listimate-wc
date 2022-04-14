@@ -42,7 +42,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 
 		// Dump the list to the console
 		// console.log(
-		// 	items.map((item)=>item.name)
+		// 	items.filter((item)=>!item.defer).map((item)=>item.name)
 		// );
 
 		if(items){

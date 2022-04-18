@@ -37,7 +37,7 @@ window.customElements.define('list-item', class extends GzDataElement {
           x${quantity}
           </span>
           <span class="break"></span>
-          <best-price databind="prices.${name.replace(/\s+/g, '').toUpperCase()}"></best-price>
+          <best-price databind="prices.${name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase()}"></best-price>
         </div>
       `;
 

@@ -21,7 +21,7 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
     if( this.dataSet ){
       let dataSet = JSON.stringify(this._dataSet);
 
-      let {name, price, quantity, pinned} = this._dataSet;
+      let {name, price, quantity, pinned, defer} = this._dataSet;
 
       this.shadowRoot.innerHTML = `
         <style>
@@ -45,14 +45,16 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" class="svg-inline--fa fa-check fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
           </button>
           <div class="button-sub-group">
-            <button class="pin ${(pinned==='true')?'active':''}">
+            <button class="pin ${(pinned)?'active':''}">
               <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="map-pin" class="svg-inline--fa fa-map-pin fa-w-9" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 512"><path fill="currentColor" d="M144 0C64.47 0 0 64.47 0 144c0 71.31 51.96 130.1 120 141.58v197.64l16.51 24.77c3.56 5.34 11.41 5.34 14.98 0L168 483.22V285.58C236.04 274.1 288 215.31 288 144 288 64.47 223.53 0 144 0zm0 240c-52.94 0-96-43.07-96-96 0-52.94 43.06-96 96-96s96 43.06 96 96c0 52.93-43.06 96-96 96zm0-160c-35.28 0-64 28.7-64 64 0 8.84 7.16 16 16 16s16-7.16 16-16c0-17.64 14.34-32 32-32 8.84 0 16-7.16 16-16s-7.16-16-16-16z"></path></svg>
+              ${pinned}
             </button>
             <button class="priceonly">
               $
             </button>
             <button class="defer">
               D
+              ${defer}
             </button>
           </div>
           <button class="delete">
@@ -109,20 +111,32 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
       }.bind(this));
 
       this.shadowRoot.querySelector('.defer').addEventListener('click', function(evt){
+        let newInterval = (
+          this._dataSet && 
+          !isNaN(this._dataSet.defer) && 
+          this._dataSet.defer < 5
+        ) ? this._dataSet.defer + 1 : 0;
+
         this.DataUpdate(this.getAttribute('databind'), {
           ...this._dataSet,
-          defer: !this._dataSet.defer
+          defer: newInterval
         });
+
         this.DataUpdate('state.activeItem', '');
       }.bind(this));
 
       this.shadowRoot.querySelector('.pin').addEventListener('click', function(evt){
-        let newPin = 'true';
-        if(this._dataSet) if(this._dataSet.pinned === 'true') newPin = 'false';
+        let newPin = (
+          this._dataSet && 
+          !isNaN(this._dataSet.pinned) && 
+          this._dataSet.pinned < 5
+        ) ? this._dataSet.pinned + 1 : 0;
+
         this.DataUpdate(this.getAttribute('databind'), {
           ...this._dataSet,
           pinned: newPin
         });
+
       }.bind(this));
 
       const inputs = this.shadowRoot.querySelectorAll('input');

@@ -11,7 +11,8 @@ window.customElements.define('list-items', class extends GzDataElement {
 		this.dataTemplate = {
 			name: '',
 			price: 0,
-			quantity: 1
+			quantity: 1,
+			defer: 0
 		};
 
 		this.total = 0;

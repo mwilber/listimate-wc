@@ -27,13 +27,20 @@ window.customElements.define('list-checkout', class extends GzDataElement {
           const freshList = this._dataSet.items.filter((item)=>{
             if( parseFloat(item.price) == 0 ) return true;
             if(item.hasOwnProperty('pinned')){
-              if(item.pinned == "true") return true;
+              if(item.pinned) return true;
             }
             return false;
           });
           for(let item of freshList){
+
+            let newDefer = (item.defer && !isNaN(item.defer)) ? item.defer : 0;
+            if(item.hasOwnProperty('pinned')){
+              if(item.pinned && !newDefer && parseFloat(item.price) != 0) newDefer = item.pinned;
+            }
+            if(newDefer) newDefer--;
+
             item.price = 0;
-            item.defer = false;
+            item.defer = newDefer;
           }
           console.log('checkout', this.getAttribute('databind')+'.items', freshList);
           this.DataUpdate(this.getAttribute('databind')+'.items', freshList);

@@ -99,7 +99,7 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
         if(this.dataset.store && parseFloat(newPrice)) {
           this.DataUpdate(
             'prices.' + 
-            this._dataSet.name.toUpperCase() + 
+            this._dataSet.name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase() + 
             '.' + 
             this.dataset.store, 
             parseFloat(newPrice)

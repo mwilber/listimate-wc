@@ -16,6 +16,11 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
       quantity: 1
     };
   }
+
+  SetPrice(price){
+    if(!price || isNaN(price)) return;
+    this.shadowRoot.querySelector('input[name="price"]').value = price;
+  }
   
   render(){
     if( this.dataSet ){
@@ -32,7 +37,9 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
         <div class="input-group">
             <label>$</label>
             <input name="price" inputmode="decimal" value="${price}"/>
-            <div class="inc-group"></div>
+            <div class="inc-group">
+              <autofill-price databind="prices.${name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase()}"></autofill-price>
+            </div>
             <label>qty</label>
             <input name="quantity" inputmode="decimal" value="${quantity}"/>
             <div class="inc-group">

@@ -11,5 +11,6 @@ import './components/list-items/list-items';
 import './components/list-items/list-item/list-item';
 import './components/list-items/list-item/best-price/best-price';
 import './components/list-item-detail/list-item-detail';
+import './components/list-item-detail/autofill-price/autofill-price';
 import './components/list-checkout/list-checkout.js';
 import './components/list-location/list-location.js';

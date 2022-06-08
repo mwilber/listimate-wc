@@ -1,7 +1,7 @@
-import cssData from './best-price.css';
-import { GzDataElement } from '../../../gz-core/GzDataElement';
+import cssData from './autofill-price.css';
+import { GzDataElement } from '../../gz-core/GzDataElement';
 
-window.customElements.define('best-price', class extends GzDataElement {
+window.customElements.define('autofill-price', class extends GzDataElement {
   
     constructor(){
       super();
@@ -42,5 +42,10 @@ window.customElements.define('best-price', class extends GzDataElement {
           <span class="price">$${displayPrice.price}</span>
         </div>
       `;
+
+      this.shadowRoot.querySelector('.price-tag').addEventListener('click', function(evt){
+        const host = this.getRootNode().host;
+        if(host.SetPrice) host.SetPrice(displayPrice.price)
+      }.bind(this));
     }
 });

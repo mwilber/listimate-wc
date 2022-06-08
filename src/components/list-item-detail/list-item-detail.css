@@ -139,3 +139,8 @@ button:active svg path,
 button.active svg path{
     fill: var(--button-background-color);
 }
+
+.inc-group autofill-price{
+    display: flex;
+    flex-grow: 1;
+}

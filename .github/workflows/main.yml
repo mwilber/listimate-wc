@@ -1,0 +1,34 @@
+name: Upload complete repo (e.g. website) to a SFTP destination
+
+on: [push]
+
+jobs:
+  Upload-to-SFTP:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: 📦 Install dependencies
+        run: npm install
+
+      - name: 🏗️ Build project
+        run: npm run build
+
+      - name: 📂 SFTP uploader
+        uses: wangyucode/sftp-upload-action@v1.4.8
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          forceUpload: true
+          localDir: './dist'
+          remoteDir: '/home/greenzeta/staging.greenzeta.com/listimate-dev/'
+          exclude: '.git*,.DS_Store'
+          dryRun: false

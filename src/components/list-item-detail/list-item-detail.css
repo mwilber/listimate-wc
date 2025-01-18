@@ -61,7 +61,23 @@ input{
     flex-direction: column;
     align-content: flex-end;
     flex: 1;
-    margin: 1em 1em auto 1em
+    margin: 1em 1em auto 1em;
+}
+
+.button-sub-group{
+    display: flex;
+    flex-direction: row;
+    flex: 2;
+    /* margin: 1em 1em auto 1em */
+}
+
+.button-sub-group button{
+    flex: 1;
+    margin-left: 0.5em;
+}
+
+.button-sub-group button:first-of-type{
+    margin-left: 0;
 }
 
 .button-group button{
@@ -77,6 +93,7 @@ input{
 }
 
 .button-group button.delete{
+    flex: 1;
     background-color: var(--alert-background-color);
 }
 
@@ -121,4 +138,9 @@ button.active, button:active{
 button:active svg path,
 button.active svg path{
     fill: var(--button-background-color);
+}
+
+.inc-group autofill-price{
+    display: flex;
+    flex-grow: 1;
 }

@@ -38,15 +38,26 @@ window.customElements.define('list-items', class extends GzDataElement {
 		const dataBinding = this.getAttribute('databind');
 		const {name, items} = this._dataSet || {name: '', items:[]};
 		let roundedTotal = 0;
+		let displayCount = 0;
+
+		// Dump the list to the console
+		// console.log(
+		// 	items.filter((item)=>!item.defer).map((item)=>item.name)
+		// );
 
 		if(items){
 			this.total = items.reduce((prev, curr)=>{
+				if(!curr.defer &&(parseFloat(curr.price) == 0 || parseFloat(curr.quantity) == 0)) displayCount++;
 				roundedTotal += (Math.ceil(parseFloat(curr.price)) * parseFloat(curr.quantity))
 				return prev + (parseFloat(curr.price) * parseFloat(curr.quantity));
 			}, 0);
 		}
 		const displayTotal = this.total.toFixed(2);
 		const displayRounded = Math.floor(roundedTotal);
+
+		let storeName = "";
+		if(this._dataSet && this._dataSet.stores)
+			storeName = Object.keys(this._dataSet.stores).find((store) => this._dataSet.stores[store]);
 
 		this.shadowRoot.innerHTML = `
 			<style>
@@ -64,10 +75,11 @@ window.customElements.define('list-items', class extends GzDataElement {
 				<span class="dollar-sign">$</span>
 				<span class="rounded">${displayRounded}</span>
 				<span class="actual">${displayTotal}</span>
+				<span class="count">${displayCount}</span>
 			</div>
 			<gz-for>
 				<template>
-					<list-item databind="${dataBinding}.items"></list-item>
+					<list-item databind="${dataBinding}.items" data-store="${storeName}"></list-item>
 				</template>
 			</gz-for>
 		`;
@@ -82,6 +94,7 @@ window.customElements.define('list-items', class extends GzDataElement {
 
 		let btnAdd = this.shadowRoot.getElementById('btn-add');
 		btnAdd.addEventListener('click', (evt)=>{
+
 			let inpName = this.shadowRoot.getElementById('inp-add');
 
 			if(inpName.value){

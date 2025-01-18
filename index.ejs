@@ -93,6 +93,12 @@
             top:12px;
             right:15px;
         }
+
+        list-location{
+            position: absolute;
+            top:12px;
+            right:60px;
+        }
     
 
         .container{
@@ -165,6 +171,7 @@
         <gz-if dataBind="state.activeList" bind-child="byref">
             <div slot="then">
                 <list-checkout dataBind=""></list-checkout>
+                <list-location dataBind=""></list-location>
             </div>
         </gz-if>
     </div>

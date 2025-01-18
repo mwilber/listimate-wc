@@ -13,8 +13,9 @@ window.customElements.define('list-item', class extends GzDataElement {
     }
     
     render(){
-      const {name, price, quantity, pinned} = this._dataSet;
-      const elemClass = (price > 0 && quantity > 0)? 'checked' : '';
+      const {name, price, quantity, pinned, defer} = this._dataSet;
+      let elemClass = (price > 0 && quantity > 0)? 'checked' : '';
+      elemClass += (defer)? ' deferred' : '';
 
       this.shadowRoot.innerHTML = `
         <style>
@@ -35,6 +36,8 @@ window.customElements.define('list-item', class extends GzDataElement {
           <span class="item-quantity">
           x${quantity}
           </span>
+          <span class="break"></span>
+          <best-price databind="prices.${name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase()}"></best-price>
         </div>
       `;
 
@@ -47,6 +50,7 @@ window.customElements.define('list-item', class extends GzDataElement {
         }));
         // TODO: Parse this out directly in the detail component
         document.querySelector('list-item-detail').setAttribute('idx', this.getAttribute('idx'));
+        document.querySelector('list-item-detail').setAttribute('data-store', this.getAttribute('data-store'));
       }.bind(this));
     }
 });

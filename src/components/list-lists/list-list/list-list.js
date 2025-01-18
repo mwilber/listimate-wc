@@ -8,7 +8,11 @@ window.customElements.define('list-list', class extends GzDataElement {
 
     this._dataSet = {
       name:'', 
-      number: ''
+      number: '',
+      stores: {
+        WalMart: true,
+        Aldi: false
+      }
     };
   }
   

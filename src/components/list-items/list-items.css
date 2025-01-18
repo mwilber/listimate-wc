@@ -74,6 +74,16 @@
     color: #eee;
 }
 
+.total-group .count{
+    float: right;
+    font-size: 0.5em;
+    line-height: 2em;
+}
+
+.total-group .count:before{
+    content: 'Itms: '
+}
+
 gz-for{
     flex:1;
     flex-grow: 1;

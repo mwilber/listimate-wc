@@ -6,7 +6,7 @@
  * contains registration code for service-worker.js For more information on service workers and Progressive Web Apps 
  * check out the GreenZeta 10 minute PWA example at https://github.com/mwilber/gz-10-minute-pwa
  */ 
-import './serviceWorkerRegistration';
+//import './serviceWorkerRegistration';
 
 import { GzDataStoreFirebase } from './GzDataStoreFirebase';
 

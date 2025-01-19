@@ -14,7 +14,7 @@ window.customElements.define('best-price', class extends GzDataElement {
 
       const displayPrice = {
         name: this.dataset.store,
-        price: this._dataSet[this.dataset.store]
+        price: null
       };
       let bestPrice = null;
       let bestPriceStr = '';
@@ -27,6 +27,8 @@ window.customElements.define('best-price', class extends GzDataElement {
         this.DataUpdate(this.getAttribute('databind'), {x: "x"});
         return;
       } else if(!this._dataSet) return;
+
+      displayPrice.price = this._dataSet[this.dataset.store] || null;
 
       Object.keys(this._dataSet).forEach(
         (name) => {

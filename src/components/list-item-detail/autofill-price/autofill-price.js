@@ -34,7 +34,7 @@ window.customElements.define('autofill-price', class extends GzDataElement {
         </style>
         
         <div class="price-tag">
-          <span class="name">${displayPrice.name}</span>
+          <span class="name">${displayPrice.name.replace(/_/g, ' ')}</span>
           <span class="price">$${displayPrice.price}</span>
         </div>
       `;

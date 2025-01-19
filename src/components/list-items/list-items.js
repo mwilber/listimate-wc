@@ -55,9 +55,9 @@ window.customElements.define('list-items', class extends GzDataElement {
 		const displayTotal = this.total.toFixed(2);
 		const displayRounded = Math.floor(roundedTotal);
 
-		let storeName = "";
-		if(this._dataSet && this._dataSet.stores)
-			storeName = Object.keys(this._dataSet.stores).find((store) => this._dataSet.stores[store]);
+		let storeName = name.replace(/ /g, '_');
+		// if(this._dataSet && this._dataSet.stores)
+		// 	storeName = Object.keys(this._dataSet.stores).find((store) => this._dataSet.stores[store]);
 
 		this.shadowRoot.innerHTML = `
 			<style>

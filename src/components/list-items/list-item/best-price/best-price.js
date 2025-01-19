@@ -18,8 +18,9 @@ window.customElements.define('best-price', class extends GzDataElement {
       };
       let bestPrice = null;
       let bestPriceStr = '';
+      let displayPriceStr = '';
 
-      if (!displayPrice.price && displayPrice.price !== 0) return;
+      // if (!displayPrice.price && displayPrice.price !== 0) return;
       if (typeof this._dataSet === 'undefined') {
         console.log('no price prop for ', this.getAttribute('databind'), this._dataSet)
         // Add a placeholder under the name so the price can be added later
@@ -30,14 +31,24 @@ window.customElements.define('best-price', class extends GzDataElement {
       Object.keys(this._dataSet).forEach(
         (name) => {
           const price = this._dataSet[name];
-          if (price !== 'x' && (!displayPrice || displayPrice.price > price))
+          if (price !== 'x' && (!bestPrice || bestPrice.price > price))
             bestPrice = {name: name, price: price}
         }
       );
 
-      if(bestPrice && bestPrice.name !== displayPrice.name) {
-        bestPriceStr = `&nbsp;&nbsp;&gt;&nbsp;&nbsp;${bestPrice.name} $${bestPrice.price}`;
+      if(displayPrice.price && displayPrice.price !== 0) {
+        displayPriceStr = `${displayPrice.name} $${displayPrice.price}`;
       }
+
+      if(bestPrice && bestPrice.name !== displayPrice.name) {
+        bestPriceStr = `${bestPrice.name} $${bestPrice.price}`;
+      }
+
+      if (displayPriceStr && bestPriceStr) {
+        bestPriceStr = '&nbsp;&nbsp;&gt;&nbsp;&nbsp;' + bestPriceStr;
+      }
+
+      if (!displayPriceStr && !bestPriceStr) return;
 
       //this.dataset.store = displayPrice.name;
       this.dataset.price = displayPrice.price;
@@ -48,9 +59,8 @@ window.customElements.define('best-price', class extends GzDataElement {
         </style>
         
         <div class="price-tag">
-          <span class="name">${displayPrice.name}</span>
-          <span class="price">$${displayPrice.price}</span>
-          <span class="best-price">${bestPriceStr}</span>
+          <span class="name">${displayPriceStr.replace(/_/g, ' ')}</span>
+          <span class="best-price">${bestPriceStr.replace(/_/g, ' ')}</span>
         </div>
       `;
     }

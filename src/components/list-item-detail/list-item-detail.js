@@ -38,7 +38,7 @@ window.customElements.define('list-item-detail', class extends GzDataElement {
             <label>$</label>
             <input name="price" inputmode="decimal" value="${price}"/>
             <div class="inc-group">
-              <autofill-price databind="prices.${name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase()}"></autofill-price>
+              <autofill-price databind="prices.${name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase()}" data-store="${this.dataset.store || ''}"></autofill-price>
             </div>
             <label>qty</label>
             <input name="quantity" inputmode="decimal" value="${quantity}"/>

@@ -17,6 +17,8 @@ window.customElements.define('list-item', class extends GzDataElement {
       let elemClass = (price > 0 && quantity > 0)? 'checked' : '';
       elemClass += (defer)? ' deferred' : '';
 
+      const storeName = this.getAttribute('store') || '';
+
       this.shadowRoot.innerHTML = `
         <style>
           ${cssData}
@@ -37,20 +39,21 @@ window.customElements.define('list-item', class extends GzDataElement {
           x${quantity}
           </span>
           <span class="break"></span>
-          <best-price databind="prices.${name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase()}"></best-price>
+          <best-price databind="prices.${name.replace(/(\s+|s$|s\s+$)/g, '').toUpperCase()}" data-store="${this.dataset.store || ''}"></best-price>
         </div>
       `;
 
       this.shadowRoot.querySelector('.list-item').addEventListener('click', function(evt){
+        // TODO: Parse this out directly in the detail component
+        document.querySelector('list-item-detail').setAttribute('idx', this.getAttribute('idx'));
+        document.querySelector('list-item-detail').setAttribute('data-store', (this.dataset.store || ''));
         document.dispatchEvent(new CustomEvent('GzDataUpdate', {
           detail:{
               target: 'state.activeItem',
               payload: this.getAttribute('databind')
           }
         }));
-        // TODO: Parse this out directly in the detail component
-        document.querySelector('list-item-detail').setAttribute('idx', this.getAttribute('idx'));
-        document.querySelector('list-item-detail').setAttribute('data-store', this.getAttribute('data-store'));
+        
       }.bind(this));
     }
 });

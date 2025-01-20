@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const dirNode = 'node_modules';
@@ -40,6 +42,9 @@ module.exports = {
             // Order of the script tags is important here. The polyfills have to load first.
             //chunks: ['webcomponents-loader', 'vendor', 'main', 'components'],
             //chunksSortMode: 'manual'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(dotenv.config().parsed)
         })
     ],
     module: {

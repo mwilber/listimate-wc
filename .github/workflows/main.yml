@@ -18,10 +18,13 @@ jobs:
       - name: 📦 Install dependencies
         run: npm install
 
+      - name: Create .env file
+        run: |
+          touch .env
+          echo FIREBASE_USERNAME = ${{ secrets.FIREBASE_USERNAME }} >> .env
+          echo FIREBASE_PASSWORD = ${{ secrets.FIREBASE_PASSWORD }} >> .env
+
       - name: 🏗️ Build project
-        env:
-          FIREBASE_USERNAME: ${{ secrets.FIREBASE_USERNAME }}
-          FIREBASE_PASSWORD: ${{ secrets.FIREBASE_PASSWORD }}
         run: npm run build
 
       - name: 📂 SFTP uploader

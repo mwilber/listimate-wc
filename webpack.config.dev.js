@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
 const merge = require('webpack-merge');
 const webpackConfig = require('./webpack.config');
 
@@ -16,5 +19,11 @@ module.exports = merge(webpackConfig, {
     devServer: {
         host: 'localhost'
     },
+
+    plugins: [
+        new webpack.DefinePlugin({
+          'process.env': JSON.stringify(dotenv.config().parsed)
+        })
+    ]
 
 });
